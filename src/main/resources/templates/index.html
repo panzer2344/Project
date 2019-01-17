@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+
+<body>
+<!--<h1>Welcome to Spring, {{ name }}</h1>-->
+<h1 th:text="'Hello, ' + ${name} + '!'"></h1>
+
+<a href="/images/upload">upload file</a>
+
+</body>
+
+</html>
