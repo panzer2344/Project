@@ -18,12 +18,7 @@ public class ImageService extends BaseService<Image, ImageRepository> {
     public Image save(MultipartFile file, User author){
         Image image = null;
         try {
-            byte[] bytes = file.getBytes();
-            Byte[] data = new Byte[bytes.length];
-            for(int i = 0; i < bytes.length; i++){
-                data[i] = bytes[i];
-            }
-            image = new Image(data, author);
+            image = new Image(file.getBytes(), author);
             save(image);
         }
         catch (IOException ioe){

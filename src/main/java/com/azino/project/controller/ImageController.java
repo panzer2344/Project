@@ -4,11 +4,14 @@ import com.azino.project.model.Image;
 import com.azino.project.model.User;
 import com.azino.project.service.ImageService;
 import com.azino.project.service.UserService;
+import javassist.bytecode.ByteArray;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.thymeleaf.util.ArrayUtils;
 
+import java.util.Base64;
 import java.util.Optional;
 
 @RestController
@@ -33,7 +36,22 @@ public class ImageController {
 
     @GetMapping("upload")
     public ModelAndView uploadImage(){
-        return new ModelAndView("uploadImageForm");
+        return new ModelAndView("images/uploadImage");
+    }
+
+    @GetMapping("getpage")
+    public ModelAndView getPage() {
+        return new ModelAndView("images/getImage");
+    }
+
+    @GetMapping("{id}")
+    public String getEncodedImage(@PathVariable Long id){
+        String result = "";
+        Optional<Image> image = imageService.findById(id);
+        if(image.isPresent()){
+            result = Base64.getEncoder().encodeToString(image.get().getData());
+        }
+        return result;
     }
 
 }

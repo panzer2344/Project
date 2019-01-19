@@ -12,14 +12,14 @@ public class Image implements IModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    private Byte[] data;
+    private byte[] data;
 
     @ManyToOne
     private User author;
 
-    public Image(Byte[] data, User author) {
+    public Image(byte[] data, User author) {
         this.data = data;
         this.author = author;
     }
