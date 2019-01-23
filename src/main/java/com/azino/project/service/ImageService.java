@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Base64;
+import java.util.Optional;
 
 @Service
 public class ImageService extends BaseService<Image, ImageRepository> {
@@ -25,6 +27,15 @@ public class ImageService extends BaseService<Image, ImageRepository> {
             ioe.printStackTrace();
         }
         return image;
+    }
+
+    public String getEncodedImage(Long id){
+        String result = "";
+        Optional<Image> image = findById(id);
+        if(image.isPresent()){
+            result = Base64.getEncoder().encodeToString(image.get().getData());
+        }
+        return result;
     }
 
 }

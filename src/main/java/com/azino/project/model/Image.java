@@ -23,4 +23,5 @@ public class Image implements IModel {
         this.data = data;
         this.author = author;
     }
+
 }

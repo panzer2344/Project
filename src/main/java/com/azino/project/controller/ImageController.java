@@ -28,10 +28,10 @@ public class ImageController {
 
     @PostMapping(value = "upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @SuppressWarnings("unchecked")
-    public String upload(@RequestParam("csv") MultipartFile file){
+    public Image upload(@RequestParam("avatar") MultipartFile file){
         Optional<User> userOptional = userService.findById((long) 1);
         User user = userOptional.orElse(new User());
-        return imageService.save(file, user).toString() + " successfully uploaded";
+        return imageService.save(file, user);
     }
 
     @GetMapping("upload")
@@ -46,12 +46,7 @@ public class ImageController {
 
     @GetMapping("{id}")
     public String getEncodedImage(@PathVariable Long id){
-        String result = "";
-        Optional<Image> image = imageService.findById(id);
-        if(image.isPresent()){
-            result = Base64.getEncoder().encodeToString(image.get().getData());
-        }
-        return result;
+        return imageService.getEncodedImage(id);
     }
 
 }
