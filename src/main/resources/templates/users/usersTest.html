@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script th:src="@{/js/users/usersTest.js}"></script>
+</head>
+<body>
+<table>
+
+    <tr>
+        <th>Get one</th>
+        <td>Id: <input type="number" id="tbGetOneId"/></td>
+        <td>
+            <button id="btnGetOne">Get One</button>
+        </td>
+        <td id="tdGetOneResult" hidden="true">
+            <label><b>Name:</b></label> <label id="taGetOneName"></label>
+            <label><b>Password:</b></label> <label id="taGetOnePassword"></label>
+            <label><b>First name:</b></label> <label id="taGetOneFirstName"></label>
+            <label><b>Last name:</b></label> <label id="taGetOneLastName"></label>
+            <label><b>Age:</b></label> <label id="taGetOneAge"></label>
+        </td>
+    </tr>
+
+    <tr>
+        <th>Get all<br/></th>
+        <td>
+            <button id="btnGetAll">Get all</button>
+        </td>
+        <td id="tdGetAllResult"></td>
+    </tr>
+
+    <tr>
+        <th>Delete one<br/></th>
+        <td>Id: <input type="number" id="tbDeleteOneId"/></td>
+        <td>
+            <button id="btnDeleteOne">Delete One</button>
+        </td>
+        <td id="tdDeleteOneResult"></td>
+    </tr>
+
+    <tr>
+        <th>Delete all<br/></th>
+        <td>
+            <button id="btnDeleteAll">Delete all</button>
+        </td>
+        <td id="tdDeleteAllResult"></td>
+    </tr>
+
+    <tr>
+        <th>Add new one<br/></th>
+        <td><label><b>Name: </b></label><input type="text" id="tbName"/></td>
+        <td><label><b>Password: </b></label><input type="text" id="tbPassword"/></td>
+        <td><label><b>First name: </b></label><input type="text" id="tbFirstName"/></td>
+        <td><label><b>Last name: </b></label><input type="text" id="tbLastName"/></td>
+        <td><label><b>Age: </b></label><input type="number" id="tbAge"></td>
+        <td>
+            <button id="btnAddNewOne">Add new one</button>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>
