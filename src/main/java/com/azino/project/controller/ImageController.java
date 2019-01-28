@@ -4,14 +4,11 @@ import com.azino.project.model.Image;
 import com.azino.project.model.User;
 import com.azino.project.service.ImageService;
 import com.azino.project.service.UserService;
-import javassist.bytecode.ByteArray;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.thymeleaf.util.ArrayUtils;
 
-import java.util.Base64;
 import java.util.Optional;
 
 @RestController

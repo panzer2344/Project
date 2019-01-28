@@ -1,80 +1,30 @@
 package com.azino.project.service;
 
 import com.azino.project.model.IModel;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public class BaseService<Model extends IModel, Repository extends CrudRepository<Model, Long>>
-        implements IService<Model> {
+public interface BaseService<Model extends IModel> {
 
-    protected Repository repository;
+    Model save(Model entity);
 
-    public BaseService(Repository repository){
-        this.repository = repository;
-    }
+    Iterable<Model> saveAll(Iterable<Model> entities);
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public Model save(Model entity) {
-        return (Model)repository.save(entity);
-    }
+    Optional<Model> findById(Long id);
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public Iterable<Model> saveAll(Iterable<Model> entities) {
-        return (Iterable<Model>) repository.saveAll(entities);
-    }
+    boolean existsById(Long id);
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public Optional<Model> findById(Long id) {
-        return (Optional<Model>) repository.findById(id);
-    }
+    Iterable<Model> findAll();
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public boolean existsById(Long id) {
-        return repository.existsById(id);
-    }
+    Iterable<Model> findAllById(Iterable<Long> ids);
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public Iterable<Model> findAll() {
-        return (Iterable<Model>) repository.findAll();
-    }
+    long count();
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public Iterable<Model> findAllById(Iterable<Long> ids) {
-        return (Iterable<Model>) repository.findAllById(ids);
-    }
+    void deleteById(Long id);
 
-    @Override
-    public long count() {
-        return repository.count();
-    }
+    void delete(Model entity);
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public void deleteById(Long id) {
-        repository.deleteById(id);
-    }
+    void deleteAll(Iterable<Model> entities);
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public void delete(Model entity) {
-        repository.delete(entity);
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public void deleteAll(Iterable<Model> entities) {
-        repository.deleteAll(entities);
-    }
-
-    @Override
-    public void deleteAll() {
-        repository.deleteAll();
-    }
+    void deleteAll();
 }
