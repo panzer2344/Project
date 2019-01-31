@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
-    Username: <input type="text" name="username" id="tbUsername" />
-    Password: <input type="password" name="password" id="tbPaswword" />
-    <button id="btnLogin">Login</button>
+<div th:if="${#request.getParameter('error') == 'true'}"
+     style="color:red;margin:10px 0px;">
+    Login Failed!!!<br/>
+    Reason :
+    <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+          th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+                Static summary
+         </span>
+</div>
 
+<form name="loginForm" method="POST">
+    Username: <input type="text" name="username" id="tbUsername"/>
+    Password: <input type="password" name="password" id="tbPaswword"/>
+    <!--<button id="btnLogin">Login</button>-->
+    <input type="submit" name="submit" value="submit" >
+</form>
 </body>
 </html>

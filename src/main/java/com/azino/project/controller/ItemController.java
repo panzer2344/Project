@@ -43,7 +43,7 @@ public class ItemController {
     }
 
     @GetMapping
-    public ModelAndView getAll(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model){
+    public ModelAndView getAll(Model model){
         Iterable<Item> items = itemService.findAll();
         model.addAttribute("items", items);
         model.addAttribute("imageService", imageService);

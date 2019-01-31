@@ -14,7 +14,7 @@ public class FormItem {
 
     private String name;
 
-    private Integer price;
+    private Double price;
 
     /*@Autowired
     @JsonIgnore

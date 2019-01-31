@@ -19,9 +19,9 @@ public class Item implements IModel {
     @OneToOne(targetEntity = Image.class)
     private Image avatar;
 
-    private Integer price;
+    private Double price;
 
-    public Item(String name, Image avatar, Integer price) {
+    public Item(String name, Image avatar, Double price) {
         this.name = name;
         this.avatar = avatar;
         this.price = price;
