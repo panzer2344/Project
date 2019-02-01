@@ -46,4 +46,13 @@ public class User implements IModel {
         this.lastName = lastName;
         this.age = age;
     }
+
+    public User(String name, String password, String firstName, String lastName, Integer age, Set<Role> roles) {
+        this.name = name;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.roles = roles;
+    }
 }

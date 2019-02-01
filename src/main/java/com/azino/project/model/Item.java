@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -27,12 +28,8 @@ public class Item implements IModel {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
-    }
+    @ElementCollection(targetClass = Category.class, fetch = FetchType.EAGER)
+    @ManyToMany
+    private Set<Category> categories;
+
 }

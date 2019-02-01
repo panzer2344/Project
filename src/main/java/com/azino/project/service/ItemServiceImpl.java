@@ -1,5 +1,6 @@
 package com.azino.project.service;
 
+import com.azino.project.model.Category;
 import com.azino.project.model.Item;
 import com.azino.project.model.User;
 import com.azino.project.model.form.FormItem;
@@ -15,5 +16,10 @@ public class ItemServiceImpl extends BaseServiceImpl<Item, ItemRepository> imple
 
     public Item fromFormItem(ImageService imageService, User user, FormItem item){
         return new Item(item.getName(), imageService.save(item.getAvatar(), user), item.getPrice());
+    }
+
+    @Override
+    public Iterable<Item> findAllByCategoryContains(Category category) {
+        return findAllByCategoryContains(category);
     }
 }

@@ -6,7 +6,6 @@ import com.azino.project.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,14 +25,19 @@ public class TestController {
 
     @GetMapping("BStest")
     public ModelAndView bsTest(){
-        return new ModelAndView("BStest");
+        return new ModelAndView("index");
     }
 
-    @GetMapping("itemsBStest")
+    /*@GetMapping("itemsBStest")
     public ModelAndView itemsBStest(Model model){
         Iterable<Item> items = itemService.findAll();
         model.addAttribute("items", items);
         model.addAttribute("imageService", imageService);
-        return new ModelAndView("BStest");
+        return new ModelAndView("index");
+    }*/
+
+    @GetMapping("old_menu")
+    public ModelAndView index(){
+        return new ModelAndView("old_menu", "name", "Alex");
     }
 }
