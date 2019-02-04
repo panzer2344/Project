@@ -34,24 +34,40 @@
 <main>
     <div class="container">
         <div class="row my-5">
-            <div th:if="${#request.getParameter('error') == 'true'}"
-                 style="color:red;margin:10px 0px;">
-                Login Failed!!!<br/>
-                Reason :
-                <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
-                      th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
-                        Static summary
-                    </span>
-            </div>
+            <div th:if="${#request.userPrincipal != null}">
+                <div th:if="${user != null}">
 
-            <form name="loginForm" method="POST" th:action="@{/j_spring_security_check}">
-                Username: <input type="text" name="username" id="tbUsername"/>
-                Password: <input type="password" name="password" id="tbPaswword"/>
-                <!--<button id="btnLogin">Login</button>-->
-                <input type="submit" name="submit" value="submit">
-            </form>
+                    <div th:if="${user.name != null && !user.name.equals('')}">
+                        <label>Username: </label>
+                        <label th:text="${user.name}"></label>
+                    </div>
+
+                    <div th:if="${user.firstName != null && !user.firstName.equals('')}">
+                        <label>First name: </label>
+                        <label th:text="${user.firstName}"></label>
+                    </div>
+
+                    <div th:if="${user.lastName != null && !user.lastName.equals('')}">
+                        <label>Last name: </label>
+                        <label th:text="${user.lastName}"></label>
+                    </div>
+
+                    <div th:if="${user.age != null}">
+                        <label>Age: </label>
+                        <label th:text="${user.age}"></label>
+                    </div>
+
+                    <div th:if="${user.roles != null}">
+                        <div th:each="role : ${user.roles}">
+                            <label>Role: </label>
+                            <label th:text="${role.name}"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </main>
+
 </body>
 </html>

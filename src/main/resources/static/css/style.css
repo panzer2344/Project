@@ -1,0 +1,63 @@
+body {
+    padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+    body {
+        padding-top: 56px;
+    }
+}
+
+.card-img-top-700-400 {
+    width : 700px;
+    height : 400px;
+}
+
+/* Equal-height card images, cf. https://stackoverflow.com/a/47698201/1375163*/
+.card-img-top {
+    /*height: 11vw;*/
+    object-fit: cover;
+}
+.card {
+    object-fit: cover;
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .card-img-top {
+        height: 19vw;
+        width: 19vw;
+    }
+    .card {
+        width: 19vw;
+    }
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .card-img-top {
+        height: 16vw;
+        width: 16vw;
+    }
+    .card {
+        width: 16vw;
+    }
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .card-img-top {
+        height: 11vw;
+        width: 11vw;
+    }
+    .card {
+        width: 11vw;
+    }
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 992px) {
+    .card-img-top {
+        height: 11vw;
+        width: 11vw;
+    }
+    .card {
+        width: 11vw;
+    }
+}

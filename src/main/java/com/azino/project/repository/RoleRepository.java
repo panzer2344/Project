@@ -1,0 +1,9 @@
+package com.azino.project.repository;
+
+import com.azino.project.model.Role;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface RoleRepository extends CrudRepository<Role, Long> {
+}

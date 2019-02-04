@@ -31,76 +31,9 @@
 <!--<div class="container">-->
 <!--<header>-->
 <!--<div class="container">-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-info navbar-fixed-center fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            <i class="fab fa-aviato fa-2x"></i>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar2"
-                aria-controls="navbar2" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse p-2" id="navbar2">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <!-- Home button  -->
-                    <a class="nav-link active" href="#">Home</a>
-                </li>
+<div th:insert="~{menu_navbar :: menu}"></div>
 
-                <li class="nav-item">
-                    <!-- All items -->
-                    <!-- Should add category field, but not in navbar, and also not in header but somewhere -->
-                    <a class="nav-link" href="#">Items</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <!-- Dropdown with main category list -->
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Categories
-                    </a>
-
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Category 1</a>
-                        <a class="dropdown-item" href="#">Category 2</a>
-                        <a class="dropdown-item" href="#">Category 3</a>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <!-- Shop basket icon, mb with count of items on front -->
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-shopping-cart fa-2x text-light" aria-hidden="true"></i>
-                    </a>
-                </li>
-
-                <li class="nav-item my-lg-0 mr-sm-2">
-                    <a class="nav-link" href="/login">LogIn</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/signUp">SignUp</a>
-                </li>
-
-                <li th:if="${#request.userPrincipal != null}" class="nav-item">
-                    <a class="nav-link" href="/account">Account</a>
-                </li>
-
-                <li th:if="${#request.userPrincipal != null}" class="nav-item">
-                    <a class="nav-link" href="/signOut">SingOut</a>
-                </li>
-
-            </ul>
-
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-            </form>
-
-        </div>
-    </div>
-</nav>
 <!--</div>-->
 <!--</header>-->
 

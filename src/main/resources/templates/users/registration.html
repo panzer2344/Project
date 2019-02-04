@@ -3,6 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <!-- Font awesome icons etc -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"/>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"
+            integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1"
+            crossorigin="anonymous"></script>
+
+    <!-- Link to simple style rules for this page -->
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+
 </head>
 <body>
 
@@ -16,27 +39,34 @@
 
     <button id="bSignUp">SignUp</button>-->
 
-<div th:if="${#request.getParameter('error') == 'true'}"
-     style="color:red;margin:10px 0px;">
-    Login Failed!!!<br/>
-    Reason : <label th:value="${#request.getParameter('errorName')}"></label>
+<div th:insert="~{menu_navbar :: menu}"></div>
 
-</div>
+<main>
+    <div class="container">
+        <div class="row my-5">
+            <div th:if="${#request.getParameter('error') == 'true'}"
+                 style="color:red;margin:10px 0px;">
+                Login Failed!!!<br/>
+                Reason : <label th:value="${#request.getParameter('errorName')}"></label>
 
-<form action="/users" method="post" name="newUser">
-    <label>Username: </label> <input type="text" name="name" id="tbUsername" />
-    <label>Password: </label> <input type="text" name="password" id="tbPassword" />
-    <label>First name: </label> <input type="text" name="firstName" id="tbFirstName" />
-    <label>Last name: </label> <input type="text" name="lastName" id="tbLastName" />
-    <label>Age: </label> <input type="number" name="age" id="tbAge" />
-    <th:block th:each="role : ${roles}">
-        <input type="checkbox" name="roles" th:value="${role.id}">
-        <label th:text="${role.name}"></label>
-    </th:block>
-    <input type="submit" name="submit" id="submit" value="SignUp" />
-</form>
+            </div>
 
+            <form action="/users" method="post" name="newUser">
+                <label>Username: </label> <input type="text" name="name" id="tbUsername"/><br/>
+                <label>Password: </label> <input type="text" name="password" id="tbPassword"/><br/>
+                <label>First name: </label> <input type="text" name="firstName" id="tbFirstName"/><br/>
+                <label>Last name: </label> <input type="text" name="lastName" id="tbLastName"/><br/>
+                <label>Age: </label> <input type="number" name="age" id="tbAge"/><br/>
+                <th:block th:each="role : ${roles}">
+                    <input type="checkbox" name="roles" th:value="${role.id}">
+                    <label th:text="${role.name}"></label><br/>
+                </th:block>
+                <input type="submit" name="submit" id="submit" value="SignUp"/><br/>
+            </form>
+        </div>
+    </div>
 
+</main>
 
 </body>
 </html>
