@@ -36,6 +36,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         System.out.println("Found User : " + user);
 
         Set<Role> roles = user.getRoles();
+        //List<Role> roles = user.getRoles();
 
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
 

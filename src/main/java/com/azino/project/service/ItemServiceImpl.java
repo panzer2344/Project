@@ -20,6 +20,6 @@ public class ItemServiceImpl extends BaseServiceImpl<Item, ItemRepository> imple
 
     @Override
     public Iterable<Item> findAllByCategoryContains(Category category) {
-        return findAllByCategoryContains(category);
+        return ((ItemRepository)super.repository).findAllByCategoriesContains(category);
     }
 }

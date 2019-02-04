@@ -28,8 +28,8 @@ public class Item implements IModel {
         this.price = price;
     }
 
-    @ElementCollection(targetClass = Category.class, fetch = FetchType.EAGER)
-    @ManyToMany
+    //@ElementCollection(targetClass = Category.class, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Category> categories;
 
 }
