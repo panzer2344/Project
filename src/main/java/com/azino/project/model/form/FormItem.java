@@ -1,9 +1,12 @@
 package com.azino.project.model.form;
 
+import com.azino.project.model.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -15,6 +18,8 @@ public class FormItem {
     private String name;
 
     private Double price;
+
+    private Set<Category> categories;
 
     /*@Autowired
     @JsonIgnore

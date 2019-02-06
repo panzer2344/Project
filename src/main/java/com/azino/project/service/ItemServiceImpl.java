@@ -15,7 +15,7 @@ public class ItemServiceImpl extends BaseServiceImpl<Item, ItemRepository> imple
     }
 
     public Item fromFormItem(ImageService imageService, User user, FormItem item){
-        return new Item(item.getName(), imageService.save(item.getAvatar(), user), item.getPrice());
+        return new Item(item.getName(), imageService.save(item.getAvatar(), user), item.getPrice(), item.getCategories());
     }
 
     @Override

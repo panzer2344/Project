@@ -32,4 +32,11 @@ public class Item implements IModel {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Category> categories;
 
+    public Item(String name, Image avatar, Double price, Set<Category> categories) {
+        this.name = name;
+        this.avatar = avatar;
+        this.price = price;
+        this.categories = categories;
+    }
+
 }

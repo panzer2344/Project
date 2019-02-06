@@ -1,9 +1,13 @@
 package com.azino.project.controller;
 
+import com.azino.project.model.Category;
 import com.azino.project.model.Item;
 import com.azino.project.model.User;
 import com.azino.project.model.form.FormItem;
-import com.azino.project.service.*;
+import com.azino.project.service.CategoryService;
+import com.azino.project.service.ImageService;
+import com.azino.project.service.ItemService;
+import com.azino.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +24,15 @@ public class ItemController {
     private ImageService imageService;
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
+
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping("addPage")
-    public ModelAndView getAddPage(){
+    public ModelAndView getAddPage(Model model) {
+        Iterable<Category> categories = categoryService.findAll();
+        model.addAttribute("categories", categories);
         return new ModelAndView("items/addItem");
     }
 
