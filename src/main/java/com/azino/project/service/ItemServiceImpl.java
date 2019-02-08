@@ -1,9 +1,9 @@
 package com.azino.project.service;
 
 import com.azino.project.model.Category;
+import com.azino.project.model.DTO.form.FormItem;
 import com.azino.project.model.Item;
 import com.azino.project.model.User;
-import com.azino.project.model.form.FormItem;
 import com.azino.project.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +21,11 @@ public class ItemServiceImpl extends BaseServiceImpl<Item, ItemRepository> imple
     @Override
     public Iterable<Item> findAllByCategoryContains(Category category) {
         return ((ItemRepository)super.repository).findAllByCategoriesContains(category);
+    }
+
+    @Override
+    public Iterable<Item> findAllByCategoryContains(Long id) {
+        //return ((ItemRepository)super.repository).findAllByCategoriesContainsWithId(id);
+        return repository.findAllByCategoriesContains(id);
     }
 }

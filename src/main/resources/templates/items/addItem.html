@@ -21,24 +21,36 @@
 </head>
 <body>
 
-<div>
-    <h3>Add new item</h3><br/>
-    <form action="/items" name="addItem" novalidate id="fAddItem" method="post" enctype="multipart/form-data">
-        <p><label>Name: </label> <input id="itName" type="text" form="fAddItem" name="name"></p>
-        <p><label>Price: </label> <input id="itPrice" type="text" form="fAddItem" name="price"></p>
-        <p><label>Avatar: </label> <input id="itAvatar" type="file" form="fAddItem" name="avatar"></p>
-        <p>
-            <label>Categories: </label>
-            <th:block th:each="category : ${categories}">
-                <input type="checkbox" name="categories" th:value="${category.id}">
-                <label th:text="${category.name}"></label><br/>
-            </th:block>
-        </p>
-        <!--<input id="btnAddItem" type="submit" value="add"/>-->
-        <input type="submit" value="add">
-    </form>
-    <p id="result"></p>
-</div>
+<div th:insert="~{menu_navbar :: menu}"></div>
+
+<main>
+    <div>
+        <div class="container">
+            <div class="row my-5">
+                <div class="my-5">
+                    <h3>Add new item</h3><br/>
+                    <!--<div class="row my-5">-->
+                    <form action="/items" name="addItem" novalidate id="fAddItem" method="post"
+                          enctype="multipart/form-data">
+                        <p><label>Name: </label> <input id="itName" type="text" form="fAddItem" name="name"></p>
+                        <p><label>Price: </label> <input id="itPrice" type="text" form="fAddItem" name="price"></p>
+                        <p><label>Avatar: </label> <input id="itAvatar" type="file" form="fAddItem" name="avatar"></p>
+                        <p>
+                            <label>Categories: </label>
+                            <th:block th:each="category : ${categories}">
+                                <input type="checkbox" name="categories" th:value="${category.id}">
+                                <label th:text="${category.name}"></label><br/>
+                            </th:block>
+                        </p>
+                        <!--<input id="btnAddItem" type="submit" value="add"/>-->
+                        <input type="submit" value="add">
+                    </form>
+                    <p id="result"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
 </body>
 </html>

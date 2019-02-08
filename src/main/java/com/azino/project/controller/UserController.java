@@ -3,6 +3,7 @@ package com.azino.project.controller;
 import com.azino.project.model.User;
 import com.azino.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,7 +40,7 @@ public class UserController {
             if (user.getName() != null && !user.getName().equals("") &&
                     user.getPassword() != null && !user.getPassword().equals("")) {
 
-                if (userService.findUserByName(user.getName()) == null) {
+                if (userService.findByName(user.getName()) == null) {
                     user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
                     userService.save(user);
                     return new RedirectView("login");
@@ -65,9 +66,14 @@ public class UserController {
         return userService.findAll();
     }
 
-    @GetMapping("{id}")
+    /*@GetMapping("{id}")
     public User get(@PathVariable Long id) {
         return userService.findById(id).get();
+    }*/
+
+    @GetMapping("{name}")
+    public User get(@PathVariable String name) {
+        return userService.findByName(name);
     }
 
     @DeleteMapping
@@ -76,11 +82,18 @@ public class UserController {
         return "All users successfully deleted";
     }
 
-    @DeleteMapping("{id}")
+    /*@DeleteMapping("{id}")
     public String delete(@PathVariable Long id) {
         Long userId = userService.findById(id).get().getId();
         userService.deleteById(userId);
         return "User (id = " + userId + " has been has successfully deleted";
+    }*/
+
+    @DeleteMapping("{name}")
+    public ModelAndView delete(@PathVariable String name) {
+        String username = userService.findByName(name).getName();
+        userService.deleteByName(username);
+        return new ModelAndView("redirect:/menu/index", HttpStatus.OK);
     }
 
 }

@@ -47,11 +47,27 @@
                         <a class="nav-link active" href="/">Home</a>
                     </li>
 
-                    <li class="nav-item">
-                        <!-- All items -->
-                        <!-- Should add category field, but not in navbar, and also not in header but somewhere -->
-                        <a class="nav-link" href="/">Items</a>
-                    </li>
+                    <!-- if user logged in-->
+                    <div th:if="${#request.userPrincipal != null}">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownItems" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Items
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="items/addPage">Add</a>
+                            </div>
+                        </li>
+                    </div>
+
+                    <!-- else -->
+                    <div th:unless="${#request.userPrincipal != null}">
+                        <li class="nav-item">
+                            <!-- All items -->
+                            <!-- Should add category field, but not in navbar, and also not in header but somewhere -->
+                            <a class="nav-link" href="/">Items</a>
+                        </li>
+                    </div>
 
                     <li class="nav-item dropdown">
                         <!-- Dropdown with main category list -->
@@ -61,10 +77,8 @@
                         </a>
 
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" th:each="category : ${categories}" th:href="'/' + ${category.id}" th:text="${category.name}"></a>
-                            <!--<a class="dropdown-item" href="#">Category 1</a>
-                            <a class="dropdown-item" href="#">Category 2</a>
-                            <a class="dropdown-item" href="#">Category 3</a>-->
+                            <a class="dropdown-item" th:each="category : ${categories}" th:href="'/' + ${category.id}"
+                               th:text="${category.name}"></a>
                         </div>
                     </li>
 
@@ -75,7 +89,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item my-lg-0 mr-sm-2">
+                    <li th:if="${#request.userPrincipal == null}" class="nav-item my-lg-0 mr-sm-2">
                         <a class="nav-link" href="/login">LogIn</a>
                     </li>
 

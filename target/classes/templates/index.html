@@ -47,7 +47,7 @@
 
                 <h1 class="my-4">Shop Name</h1>
                 <div class="list-group" th:each="category : ${categories}">
-                    <a href="#" class="list-group-item" th:text="${category.name}"></a>
+                    <a th:href="'/' + ${category.id}" class="list-group-item" th:text="${category.name}"></a>
                     <!--<a href="#" class="list-group-item">Category 1</a>
                     <a href="#" class="list-group-item">Category 2</a>
                     <a href="#" class="list-group-item">Category 3</a>-->

@@ -12,8 +12,13 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserRepository> imple
     }
 
     @Override
-    public User findUserByName(String userName) {
-        return ((UserRepository) super.repository).findUserByName(userName);
+    public User findByName(String userName) {
+        return super.repository.findByName(userName);
+    }
+
+    @Override
+    public User deleteByName(String userName) {
+        return super.repository.deleteByName(userName);
     }
 
     @Override
@@ -21,7 +26,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserRepository> imple
         if (user == null) {
             return null;
         } else {
-            return findUserByName(user.getUsername());
+            return findByName(user.getUsername());
         }
     }
 }

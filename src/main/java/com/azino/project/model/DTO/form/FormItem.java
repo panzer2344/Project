@@ -1,4 +1,4 @@
-package com.azino.project.model.form;
+package com.azino.project.model.DTO.form;
 
 import com.azino.project.model.Category;
 import lombok.AllArgsConstructor;

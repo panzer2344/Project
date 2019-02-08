@@ -17,7 +17,7 @@ public class BaseServiceImpl<Model extends IModel, Repository extends CrudReposi
     @Override
     @SuppressWarnings("unchecked")
     public Model save(Model entity) {
-        return (Model)repository.save(entity);
+        return repository.save(entity);
     }
 
     @Override
