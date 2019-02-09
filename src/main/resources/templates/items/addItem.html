@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:include="~{head :: headFragment}">
+    <!--<meta charset="UTF-8">
     <title>Title</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    &lt;!&ndash;<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>&ndash;&gt;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
             integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
             crossorigin="anonymous"></script>
@@ -16,7 +16,7 @@
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous"></script>
 
-    <script th:src="@{/js/items/addItem.js}"></script>
+    <script th:src="@{/js/items/addItem.js}"></script>-->
 
 </head>
 <body>
@@ -37,10 +37,56 @@
                         <p><label>Avatar: </label> <input id="itAvatar" type="file" form="fAddItem" name="avatar"></p>
                         <p>
                             <label>Categories: </label>
-                            <th:block th:each="category : ${categories}">
+                            <!--<th:block th:each="category : ${categories}">
                                 <input type="checkbox" name="categories" th:value="${category.id}">
                                 <label th:text="${category.name}"></label><br/>
-                            </th:block>
+                            </th:block>-->
+                        <ul class="my-4 list-group">
+                            <div th:each="categoryNode0 : ${categoryTree}">
+                                <div th:if="${(immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue0().intValue() == 0) && (categoryNode0.getAncestor().equals(categoryNode0.getDescendant()))}">
+                                    <!-- Level 0 categories -->
+                                    <li class="list-group-item">
+                                        <label th:text="${categoryNode0.getAncestor().name}"></label>
+                                        <input type="checkbox" name="categories"
+                                               th:value="${categoryNode0.getAncestor().id}">
+                                    </li>
+
+                                    <div th:if="${immediateDescendantsMap.get(categoryNode0.getAncestor()) != null}">
+                                        <li class="list-group-item">
+                                            <ul class="list-group">
+                                                <div th:each="category1 : ${immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue1()}">
+                                                    <!-- Level 1 categories -->
+                                                    <li class="list-group-item inner">
+                                                        <lable th:text="${category1.name}"></lable>
+                                                        <input type="checkbox" name="categories"
+                                                               th:value="${category1.id}">
+                                                    </li>
+
+                                                    <div th:if="${immediateDescendantsMap.get(category1) != null}">
+                                                        <li class="list-group-item inner">
+                                                            <ul class="list-group">
+                                                                <div th:each="category2 : ${immediateDescendantsMap.get(category1).getValue1()}">
+                                                                    <!-- Level 2 categories -->
+                                                                    <li class="list-group-item inner">
+                                                                        <label th:text="${category2.name}"></label>
+                                                                        <input type="checkbox" name="categories"
+                                                                               th:value="${category2.id}">
+                                                                    </li>
+                                                                </div>
+                                                            </ul>
+                                                        </li>
+                                                    </div>
+
+                                                </div>
+
+                                                <!--<a th:href="'/' + ${category0.getId()}"
+                                                   th:text="${category0.name}"></a><br/>-->
+                                            </ul>
+                                        </li>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
                         </p>
                         <!--<input id="btnAddItem" type="submit" value="add"/>-->
                         <input type="submit" value="add">

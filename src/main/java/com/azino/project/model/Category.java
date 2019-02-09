@@ -1,14 +1,16 @@
 package com.azino.project.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.List;
-import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-//@Data
+@Data
 //@Getter
 //@Setter
 @NoArgsConstructor
@@ -21,14 +23,14 @@ public class Category implements IModel {
 
     private String name;
 
-    @ManyToOne
-    private Category parent;
+    //@ManyToOne
+    //private Category parent;
 
     //@ElementCollection(targetClass = Category.class)
-    @OneToMany
-    private List<Category> childs;
+    //@OneToMany
+    //private List<Category> childs;
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -92,5 +94,5 @@ public class Category implements IModel {
 
     public void setChilds(List<Category> childs) {
         this.childs = childs;
-    }
+    }*/
 }

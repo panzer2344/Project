@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:include="~{head :: headFragment}">
+    <!--<meta charset="UTF-8">
     <title>Title</title>
 
-    <!-- Latest compiled and minified CSS -->
+    &lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 
-    <!-- jQuery library -->
+    &lt;!&ndash; jQuery library &ndash;&gt;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <!-- Popper JS -->
+    &lt;!&ndash; Popper JS &ndash;&gt;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 
-    <!-- Latest compiled JavaScript -->
+    &lt;!&ndash; Latest compiled JavaScript &ndash;&gt;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
-    <!-- Font awesome icons etc -->
+    &lt;!&ndash; Font awesome icons etc &ndash;&gt;
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"/>
     <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"
             integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1"
             crossorigin="anonymous"></script>
 
-    <!-- Link to simple style rules for this page -->
-    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    &lt;!&ndash; Link to simple style rules for this page &ndash;&gt;
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>-->
 
 </head>
 <body>
@@ -76,10 +76,147 @@
                             Categories
                         </a>
 
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" th:each="category : ${categories}" th:href="'/' + ${category.id}"
-                               th:text="${category.name}"></a>
-                        </div>
+                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                            <div th:each="categoryNode0 : ${categoryTree}">
+                                <div th:if="${(immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue0().intValue() == 0) && (categoryNode0.getAncestor().equals(categoryNode0.getDescendant()))}">
+                                    <!-- Level 0 categories -->
+                                    <li th:class="${immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue1().isEmpty() != true} ? 'dropdown-submenu' : ''">
+                                        <a class="dropdown-item"
+                                           th:href="'/' + ${categoryNode0.getAncestor().getId()}"
+                                           th:text="${categoryNode0.getAncestor().name}">
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <div th:if="${immediateDescendantsMap.get(categoryNode0.getAncestor()) != null}">
+                                                <!--<ul class="list-group">-->
+                                                <div th:each="category1 : ${immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue1()}">
+                                                    <!-- Level 1 categories -->
+                                                    <li th:class="${immediateDescendantsMap.get(category1).getValue1().isEmpty() != true} ? 'dropdown-submenu' : ''">
+                                                        <a class="dropdown-item"
+                                                           th:href="'/' + ${category1.getId()}"
+                                                           th:text="${category1.name}">
+                                                        </a>
+                                                        <ul class="dropdown-menu">
+                                                            <div th:if="${immediateDescendantsMap.get(category1) != null}">
+                                                                <!--<li class="dropdown-item">
+                                                                    <ul class="list-group">-->
+                                                                <div th:each="category2 : ${immediateDescendantsMap.get(category1).getValue1()}">
+                                                                    <!-- Level 2 categories -->
+                                                                    <li>
+                                                                        <a class="dropdown-item"
+                                                                           th:href="'/' + ${category2.getId()}"
+                                                                           th:text="${category2.name}">
+                                                                        </a>
+                                                                    </li>
+                                                                </div>
+                                                                <!--</ul>
+                                                            </li>-->
+                                                            </div>
+                                                        </ul>
+                                                    </li>
+
+                                                    <!--<div th:if="${immediateDescendantsMap.get(category1) != null}">
+                                                        <li class="list-group-item inner">
+                                                            <ul class="list-group">
+                                                                <div th:each="category2 : ${immediateDescendantsMap.get(category1).getValue1()}">
+                                                                    &lt;!&ndash; Level 2 categories &ndash;&gt;
+                                                                    <li class="list-group-item inner">
+                                                                        <a th:href="'/' + ${category2.getId()}"
+                                                                           th:text="${category2.name}"></a>
+                                                                    </li>
+                                                                </div>
+                                                            </ul>
+                                                        </li>
+                                                    </div>-->
+
+                                                </div>
+
+                                                <!--<a th:href="'/' + ${category0.getId()}"
+                                                   th:text="${category0.name}"></a><br/>-->
+                                                <!--</ul>-->
+                                            </div>
+                                        </ul>
+                                    </li>
+
+                                    <!--<li class="dropdown-divider"></li>-->
+
+                                    <!--<div th:if="${immediateDescendantsMap.get(categoryNode0.getAncestor()) != null}">
+                                        <li class="dropdown-submenu">
+                                            <ul class="list-group">
+                                                <div th:each="category1 : ${immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue1()}">
+                                                    &lt;!&ndash; Level 1 categories &ndash;&gt;
+                                                    <li class="list-group-item inner">
+                                                        <a th:href="'/' + ${category1.getId()}"
+                                                           th:text="${category1.name}"></a>
+                                                    </li>
+
+                                                    <div th:if="${immediateDescendantsMap.get(category1) != null}">
+                                                        <li class="list-group-item inner">
+                                                            <ul class="list-group">
+                                                                <div th:each="category2 : ${immediateDescendantsMap.get(category1).getValue1()}">
+                                                                    &lt;!&ndash; Level 2 categories &ndash;&gt;
+                                                                    <li class="list-group-item inner">
+                                                                        <a th:href="'/' + ${category2.getId()}"
+                                                                           th:text="${category2.name}"></a>
+                                                                    </li>
+                                                                </div>
+                                                            </ul>
+                                                        </li>
+                                                    </div>
+
+                                                </div>
+
+                                                &lt;!&ndash;<a th:href="'/' + ${category0.getId()}"
+                                                   th:text="${category0.name}"></a><br/>&ndash;&gt;
+                                            </ul>
+                                        </li>
+                                    </div>-->
+                                    <!--<li class="dropdown-item"><a href="#">Some other action</a></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a class="dropdown-item" href="#">Even More..</a>
+                                                <ul class="dropdown-menu">
+                                                    <li class="dropdown-item"><a href="#">3rd level</a></li>
+                                                    <li class="dropdown-submenu"><a class="dropdown-item" href="#">another
+                                                        level</a>
+                                                        <ul class="dropdown-menu">
+                                                            <li class="dropdown-item"><a href="#">4th level</a></li>
+                                                            <li class="dropdown-item"><a href="#">4th level</a></li>
+                                                            <li class="dropdown-item"><a href="#">4th level</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="dropdown-item"><a href="#">3rd level</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-item"><a href="#">Second level</a></li>
+                                            <li class="dropdown-item"><a href="#">Second level</a></li>
+                                        </ul>
+                                    </li>-->
+                                </div>
+                            </div>
+                        </ul>
+
+                        <!--<ul class="dropdown-menu">
+                            <li>
+                                &lt;!&ndash;<a class="dropdown-item" th:each="category : ${categories}" th:href="'/' + ${category.id}"
+                               th:text="${category.name}"></a>&ndash;&gt;
+                                <a class="dropdown-item">Category</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-toggle" href="#"  role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    SubCategories
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item">SubCategory</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>-->
                     </li>
 
                     <li class="nav-item">

@@ -34,7 +34,8 @@ public class IndexController {
 
     @GetMapping("{categoryId}")
     public ModelAndView index(@PathVariable Long categoryId, ModelMap modelMap) {
-        Iterable<Item> items = itemService.findAllByCategoryContains(categoryId);
+        //Iterable<Item> items = itemService.findAllByCategoryContains(categoryId);
+        Iterable<Item> items = itemService.findItemWithDescendantsByCategoryContains(categoryId);
         modelMap.addAttribute("items", items);
         modelMap.addAttribute("imageService", imageService);
         return new ModelAndView("forward:/menu/index", modelMap);

@@ -13,4 +13,8 @@ public interface ItemService extends BaseService<Item>{
 
     Iterable<Item> findAllByCategoryContains(Long id);
 
+    Iterable<Item> findItemWithDescendantsByCategoryContains(Category category);
+
+    Iterable<Item> findItemWithDescendantsByCategoryContains(Long id);
+
 }

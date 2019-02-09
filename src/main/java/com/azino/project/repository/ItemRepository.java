@@ -7,6 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ItemRepository extends CrudRepository<Item, Long> {
 
@@ -17,4 +19,16 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
 
     @Query("select i From Item i join i.categories c where :id = c.id")
     Iterable<Item> findAllByCategoriesContains(@Param("id") Long id);
+
+    @Query("select i From Item i join i.categories c where c in :categories")
+    Iterable<Item> findAllByCategoriesContains(@Param("categories") List<Category> categories);
+
+    @Query("select i From Item i join i.categories c where c.id in :ids")
+    Iterable<Item> findAllByCategoriesContainsIds(@Param("ids") List<Long> ids);
+
+    @Query("select i From Item i join i.categories c where c in :categories")
+    Iterable<Item> findAllByCategoriesContains(@Param("categories") Iterable<Category> categories);
+
+    @Query("select i From Item i join i.categories c where c.id in :ids")
+    Iterable<Item> findAllByCategoriesContainsIds(@Param("ids") Iterable<Long> ids);
 }
