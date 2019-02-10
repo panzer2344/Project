@@ -29,6 +29,7 @@ body {
     }
     .card {
         width: 19vw;
+        height: 38vw;
     }
 }
 /* Medium devices (tablets, 768px and up) */
@@ -39,6 +40,7 @@ body {
     }
     .card {
         width: 16vw;
+        height: 32vw;
     }
 }
 /* Large devices (desktops, 992px and up) */
@@ -49,6 +51,7 @@ body {
     }
     .card {
         width: 11vw;
+        height: 22vw;
     }
 }
 /* Extra large devices (large desktops, 1200px and up) */
@@ -59,6 +62,7 @@ body {
     }
     .card {
         width: 11vw;
+        height: 22vw;
     }
 }
 

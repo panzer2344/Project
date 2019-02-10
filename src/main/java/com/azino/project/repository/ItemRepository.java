@@ -12,6 +12,9 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends CrudRepository<Item, Long> {
 
+    @Query("select i from ShoppingBasket sb join sb.items i where :id = sb.id")
+    Iterable<Item> findAllByShoppingBasketId(@Param("id") Long id);
+
     Iterable<Item> findAllByCategoriesContains(Category category);
 
     //@Query("select i From Item i Where :id in (select c.id from i.categories c)")

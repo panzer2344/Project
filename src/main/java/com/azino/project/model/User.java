@@ -2,6 +2,7 @@ package com.azino.project.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,6 +21,7 @@ public class User implements IModel {
     private Long id;*/
 
     @Id
+    @Type(type = "java.lang.String")
     private String name;
 
     private String password;
@@ -61,4 +63,4 @@ public class User implements IModel {
         this.roles = roles;
     }
 
-    }
+}

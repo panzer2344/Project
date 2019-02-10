@@ -1,4 +1,4 @@
-package com.azino.project.service;
+package com.azino.project.service.impl;
 
 import com.azino.project.model.Category;
 import com.azino.project.model.DTO.form.FormItem;
@@ -6,8 +6,13 @@ import com.azino.project.model.Item;
 import com.azino.project.model.User;
 import com.azino.project.repository.CategoryTreeRepository;
 import com.azino.project.repository.ItemRepository;
+import com.azino.project.service.ImageService;
+import com.azino.project.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ItemServiceImpl extends BaseServiceImpl<Item, ItemRepository> implements ItemService {
@@ -44,5 +49,18 @@ public class ItemServiceImpl extends BaseServiceImpl<Item, ItemRepository> imple
     public Iterable<Item> findItemWithDescendantsByCategoryContains(Long id) {
         Iterable<Category> categories = categoryTreeRepository.findAllDescendants(id);
         return super.repository.findAllByCategoriesContains(categories);
+    }
+
+    /*@Override
+    public List<Item> findAllById(List<Long> ids) {
+        return super.repository.findAllById(ids);
+    }*/
+
+    @Override
+    public List<Item> findAllByShoppingBasketId(Long id) {
+        Iterable<Item> items = super.repository.findAllByShoppingBasketId(id);
+        List<Item> itemList = new ArrayList<>();
+        items.forEach(itemList::add);
+        return itemList;
     }
 }

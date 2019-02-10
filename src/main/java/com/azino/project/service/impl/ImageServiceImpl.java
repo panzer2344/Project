@@ -1,8 +1,9 @@
-package com.azino.project.service;
+package com.azino.project.service.impl;
 
 import com.azino.project.model.Image;
 import com.azino.project.model.User;
 import com.azino.project.repository.ImageRepository;
+import com.azino.project.service.ImageService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

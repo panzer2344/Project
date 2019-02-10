@@ -1,7 +1,8 @@
-package com.azino.project.service;
+package com.azino.project.service.impl;
 
 import com.azino.project.model.Role;
 import com.azino.project.repository.RoleRepository;
+import com.azino.project.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

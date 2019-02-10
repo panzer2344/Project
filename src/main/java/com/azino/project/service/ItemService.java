@@ -5,9 +5,13 @@ import com.azino.project.model.DTO.form.FormItem;
 import com.azino.project.model.Item;
 import com.azino.project.model.User;
 
+import java.util.List;
+
 public interface ItemService extends BaseService<Item>{
 
     Item fromFormItem(ImageService imageService, User user, FormItem item);
+
+    /*List<Item> findAllById(List<Long> ids);*/
 
     Iterable<Item> findAllByCategoryContains(Category category);
 
@@ -16,5 +20,7 @@ public interface ItemService extends BaseService<Item>{
     Iterable<Item> findItemWithDescendantsByCategoryContains(Category category);
 
     Iterable<Item> findItemWithDescendantsByCategoryContains(Long id);
+
+    List<Item> findAllByShoppingBasketId(Long id);
 
 }

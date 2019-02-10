@@ -1,7 +1,8 @@
-package com.azino.project.service;
+package com.azino.project.service.impl;
 
 import com.azino.project.model.User;
 import com.azino.project.repository.UserRepository;
+import com.azino.project.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service

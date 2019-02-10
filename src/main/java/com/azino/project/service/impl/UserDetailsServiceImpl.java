@@ -1,4 +1,4 @@
-package com.azino.project.service;
+package com.azino.project.service.impl;
 
 import com.azino.project.model.Role;
 import com.azino.project.model.User;

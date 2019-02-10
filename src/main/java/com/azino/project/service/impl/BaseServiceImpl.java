@@ -1,6 +1,7 @@
-package com.azino.project.service;
+package com.azino.project.service.impl;
 
 import com.azino.project.model.IModel;
+import com.azino.project.service.BaseService;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
