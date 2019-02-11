@@ -1,0 +1,9 @@
+INSERT INTO public.category_tree (id, level, ancestor_id, descendant_id) VALUES (1, 0, 1, 1);
+INSERT INTO public.category_tree (id, level, ancestor_id, descendant_id) VALUES (2, 1, 1, 2);
+INSERT INTO public.category_tree (id, level, ancestor_id, descendant_id) VALUES (3, 1, 1, 3);
+INSERT INTO public.category_tree (id, level, ancestor_id, descendant_id) VALUES (4, 2, 1, 4);
+INSERT INTO public.category_tree (id, level, ancestor_id, descendant_id) VALUES (5, 1, 2, 2);
+INSERT INTO public.category_tree (id, level, ancestor_id, descendant_id) VALUES (6, 1, 3, 3);
+INSERT INTO public.category_tree (id, level, ancestor_id, descendant_id) VALUES (7, 2, 3, 4);
+INSERT INTO public.category_tree (id, level, ancestor_id, descendant_id) VALUES (8, 2, 4, 4);
+INSERT INTO public.category_tree (id, level, ancestor_id, descendant_id) VALUES (9, 0, 5, 5);

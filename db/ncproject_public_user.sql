@@ -1,0 +1,1 @@
+INSERT INTO public."user" (name, age, first_name, last_name, password) VALUES ('1', 1, '1', '1', '$2a$10$WwKR9qmL/W9KvmPSvJ6iOOM2LTjOXEc2jXAWnI1N5VSKFq5/4mqWu');

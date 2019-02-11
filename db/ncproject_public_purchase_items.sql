@@ -1,0 +1,15 @@
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (3, 2);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (3, 2);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (3, 3);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (3, 4);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (5, 2);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (6, 3);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (7, 1);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (8, 2);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (8, 4);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (8, 4);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (9, 1);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (9, 2);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (9, 4);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (9, 4);
+INSERT INTO public.purchase_items (purchase_id, items_id) VALUES (9, 5);

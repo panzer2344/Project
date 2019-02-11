@@ -1,0 +1,1 @@
+INSERT INTO public.user_roles (user_name, roles_id) VALUES ('1', 2);
