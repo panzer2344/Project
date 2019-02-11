@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="~{head :: headFragment}"></head>
+
+<body>
+
+<div th:insert="~{menu_navbar :: menu}"></div>
+
+<main>
+    <div class="container">
+        <!--<form method="post" action="/purchase">-->
+        <div th:if="${shoppingBasket != null}">
+            <p>
+                <label>Id: </label>
+                <label th:id="'sbIdLabel' + ${shoppingBasket.id}"
+                       class="shoppingBasketIdLabel"
+                       th:text="${shoppingBasket.id}">
+                </label>
+            </p>
+            <p>
+                <label>UserName: </label>
+                <label th:text="${shoppingBasket.user.name}"></label>
+                <!--<input type="hidden"
+                       th:value="${shoppingBasket.user.name}"
+                       th:name="userName">-->
+            </p>
+            <p>
+                <label>Items: </label><br>
+            <div th:if="${shoppingBasket.items != null}">
+                <div th:each="item, itemStat : ${shoppingBasket.items}">
+                    <!--<input type="hidden"
+                           th:name="itemsId"
+                           th:value="${item.id}">-->
+                    <div class="col-lg-4 col-md-6 my-4">
+                        <div class="card h-100">
+                            <img class="card-img-top" alt=""
+                                 th:src="'data:/jpeg;base64,' + ${imageService.getEncodedImage(item.avatar.id)}"/>
+                            <!--<input type="hidden"
+                                   th:value="${item.avatar}"
+                                   th:name="items.avatar">-->
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <div th:text="${item.name}"></div>
+                                    <!--<input th:type="hidden"
+                                           th:value="${item.name}"
+                                           th:name="items.name">-->
+                                </h4>
+                                <h5>
+                                    <div th:text="${item.price} + ' &#8381;'"></div>
+                                    <!--<input th:type="hidden"
+                                           th:value="${item.price}"
+                                           th:name="items.price">-->
+                                </h5>
+                                <div class="deleteForm"> <!--action="/shoppingBasket">-->
+                                    <input class="deleteFormSBId"
+                                           th:id="'iId' + ${item.id}"
+                                           name="itemId"
+                                           th:value="${item.id}"
+                                           type="hidden">
+                                    <input class="deleteFormSBId"
+                                           th:id="'sbId' + ${item.id}"
+                                           name="shoppingBasketId"
+                                           th:value="${shoppingBasket.id}"
+                                           type="hidden">
+                                    <!--<input type="submit" value="delete">-->
+                                    <button class="deleteButton"
+                                            th:id="'formBtn' + ${item.id}">
+                                        delete
+                                    </button>
+                                </div>
+                                <!--<input th:type="hidden"
+                                       th:value="${item.categories}"
+                                       th:name="items.categories"
+                                >-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </p>
+
+            <p>
+                <label>Amount: </label>
+                <label th:text="${shoppingBasket.amount}"></label>
+                <!--<input type="hidden"
+                       th:value="${shoppingBasket.amount}"
+                       th:name="amount">-->
+            </p>
+
+            <p>
+            <form action="/purchase" method="post">
+                <input type="hidden"
+                       th:name="shoppingBasketId"
+                       th:value="${shoppingBasket.id}">
+                <input type="submit" value="buy">
+            </form>
+            </p>
+            <p th:if="${error != null}">
+                <label style="color:red" th:value="${error}"></label>
+            </p>
+
+        </div>
+        </form>
+    </div>
+</main>
+
+<script th:src="@{/js/items/shoppingBasket.js}"></script>
+
+</body>
+
+</html>
