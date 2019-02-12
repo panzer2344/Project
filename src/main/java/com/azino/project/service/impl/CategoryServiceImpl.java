@@ -1,6 +1,7 @@
 package com.azino.project.service.impl;
 
 import com.azino.project.model.Category;
+import com.azino.project.model.CategoryTree;
 import com.azino.project.repository.CategoryRepository;
 import com.azino.project.service.CategoryService;
 import com.azino.project.service.CategoryTreeService;
@@ -30,5 +31,14 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category, CategoryRepos
     @Override
     public Category findFirstByName(String name) {
         return super.repository.getFirstByName(name);
+    }
+
+    @Override
+    public Category add(String name) {
+        Category category = new Category((long) 0, name);
+        category = save(category);
+        CategoryTree categoryTree = new CategoryTree((long) 0, category, category, 0);
+        categoryTreeService.save(categoryTree);
+        return category;
     }
 }

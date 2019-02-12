@@ -23,4 +23,12 @@ public interface ItemService extends BaseService<Item>{
 
     List<Item> findAllByShoppingBasketId(Long id);
 
+    Boolean isItemInPurchases(Item item);
+
+    Boolean isItemInPurchases(Long id);
+
+    List<Item> findByName(String name);
+
+    List<Item> findItemsWithPriceFilter(Double from, Double to);
+
 }

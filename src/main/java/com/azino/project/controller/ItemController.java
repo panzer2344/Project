@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 
@@ -77,9 +78,15 @@ public class ItemController {
 
     @DeleteMapping("/{itemId}")
     public String delete(@PathVariable("itemId") Long id, HttpServletResponse response){
-        response.setStatus(HttpServletResponse.SC_OK);
-        //itemService.deleteById(id);
-        return "Item " + id; /*+ " successfully deleted";*/
+        Boolean isMightBeDeleted = itemService.isItemInPurchases(id);
+        if(isMightBeDeleted) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            itemService.deleteById(id);
+            //itemService.deleteById(id);
+            return "Item " + id + " deleted";
+        }
+        /*response.setStatus(HttpServletResponse.SC_);*/
+        return "Item " + id + " cannot be deleted";
     }
 
 }

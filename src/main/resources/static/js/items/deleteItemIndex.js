@@ -1,7 +1,8 @@
 $(document).ready(function () {
-    $('#deleteItemBtn').click(function (e) {
+    $('.deleteItemBtn').click(function (e) {
+        itemId = parseInt($(this)[0].id.replace('deleteItemBtn', ''));
         $.ajax({
-            url: '/items/' + $('#deleteItemItemId').val(),
+            url: '/items/' + itemId,
             type: 'DELETE',
             contentType: 'application/json',
             success: function (data, textStatus, jqXHR) {

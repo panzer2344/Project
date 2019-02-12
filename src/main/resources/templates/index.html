@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div th:insert="~{categories/categoryBlock :: categories}"></div>
-
+                <div th:insert="~{items/findFilter :: priceFilter}"></div>
             </div>
             <!-- /.col-lg-3 -->
 
@@ -70,12 +70,17 @@
                                             <input type="hidden" name="id" th:value="${item.id}">
                                             <input type="submit" value="to basket">
                                         </form>
-                                        <div sec:authorize="hasRole('ADMIN')">
+                                        <div sec:authorize="hasRole('ROLE_ADMIN')">
                                             <!--<span>Only for admin</span>-->
                                             <!-- Delete item, only for admin -->
                                             <div id="delteItemDiv">
-                                                <input type="hidden" id="deleteItemItemId" name="id" th:value="${item.id}">
-                                                <button id="deleteItemBtn">delete</button>
+                                                <input type="hidden"
+                                                       th:id="'deleteItemItemId' + ${item.id}"
+                                                       name="id"
+                                                       th:value="${item.id}">
+                                                <button class="deleteItemBtn" th:id="'deleteItemBtn' + ${item.id}">
+                                                    delete
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

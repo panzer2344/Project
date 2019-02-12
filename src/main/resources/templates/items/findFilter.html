@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="~{head :: headFragment}">
+</head>
+<body>
+
+<div th:insert="~{menu_navbar :: menu}"></div>
+
+<th:block th:fragment="priceFilter">
+    <form class="form-inline my-2 my-lg-0" method="get" action="/search/filter/price">
+        <label class="font-weight-bold my-2">Price filter</label><br>
+
+        <div class="row">
+            <div class="col-1">
+                <label class="my-1">From: </label>
+                <label class="my-2">To: </label>
+            </div>
+            <div class="col-2">
+                <input class="form-control" type="number" name="from">
+                <input class="form-control" type="number" name="to">
+                <input class="btn btn-info" type="submit">
+            </div>
+        </div>
+
+    </form>
+</th:block>
+
+</body>
+</html>

@@ -19,7 +19,7 @@
             <div class="col-lg-3">
                 <h1 class="my-4">Settings</h1>
                 <div class="my-4">
-                    <div sec:authorize="hasRole('ADMIN')">
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
                         <!--<span>Only for admin</span>-->
                         <!-- Delete item, only for admin -->
                         <a href="/categories/addPage">Add category</a>
