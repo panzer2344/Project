@@ -35,4 +35,17 @@ public interface CategoryTreeRepository extends CrudRepository<CategoryTree, Lon
             " and ct.level = (select ct1.level + 1 from CategoryTree ct1 where ct1.ancestor = ct1.descendant)")
     Iterable<List<?>> findImmediateDescendantsWithDescedantLevel(@Param("category") Category category);  */
 
+    /*@Query("insert into CategoryTree")
+    void addImmediateDescendant(@Param("category") Category category);*/
+
+    @Query("select ct.ancestor from CategoryTree ct join Category c on ct.descendant.id = c.id where ct.descendant = :category")
+    Iterable<Category> findAllParents(@Param("category") Category category);
+
+    @Query("select ct.ancestor from CategoryTree ct join Category c on ct.descendant.id = c.id where ct.descendant.id = :id")
+    Iterable<Category> findAllParents(@Param("id") Long id);
+
+    Iterable<CategoryTree> findAllByDescendant(Category descendant);
+
+    Iterable<CategoryTree> findAllByDescendant_Id(Long id);
+
 }

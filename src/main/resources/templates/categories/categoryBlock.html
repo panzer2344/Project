@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<!-- xmlns:sec="http://www.sprinfgramework.org/schema/security" -->
+<head th:include="~{head :: headFragment}">
+
+</head>
+<body>
+
+<th:block th:fragment="categories">
+    <h1 class="my-4">Shop Name</h1>
+    <ul class="my-4 list-group">
+
+        <div th:if="${categoryTree} != null">
+            <div th:each="categoryNode0 : ${categoryTree}">
+                <div th:if="${(immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue0().intValue() == 0) && (categoryNode0.getAncestor().equals(categoryNode0.getDescendant()))}">
+                    <!-- Level 0 categories -->
+                    <li class="list-group-item">
+                        <a th:href="'/' + ${categoryNode0.getAncestor().getId()}"
+                           th:text="${categoryNode0.getAncestor().name}"></a>
+                    </li>
+
+                    <div th:if="${immediateDescendantsMap.get(categoryNode0.getAncestor()) != null}">
+                        <li class="list-group-item">
+                            <ul class="list-group">
+                                <div th:each="category1 : ${immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue1()}">
+                                    <!-- Level 1 categories -->
+                                    <li class="list-group-item inner">
+                                        <a th:href="'/' + ${category1.getId()}"
+                                           th:text="${category1.name}"></a>
+                                    </li>
+
+                                    <div th:if="${immediateDescendantsMap.get(category1) != null}">
+                                        <li class="list-group-item inner">
+                                            <ul class="list-group">
+                                                <div th:each="category2 : ${immediateDescendantsMap.get(category1).getValue1()}">
+                                                    <!-- Level 2 categories -->
+                                                    <li class="list-group-item inner">
+                                                        <a th:href="'/' + ${category2.getId()}"
+                                                           th:text="${category2.name}"></a>
+                                                    </li>
+                                                </div>
+                                            </ul>
+                                        </li>
+                                    </div>
+
+                                </div>
+                            </ul>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ul>
+</th:block>
+
+</body>
+</html>

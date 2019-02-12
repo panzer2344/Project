@@ -18,48 +18,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <h1 class="my-4">Shop Name</h1>
-                <ul class="my-4 list-group">
+                <div th:insert="~{categories/categoryBlock :: categories}"></div>
 
-                    <div th:each="categoryNode0 : ${categoryTree}">
-                        <div th:if="${(immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue0().intValue() == 0) && (categoryNode0.getAncestor().equals(categoryNode0.getDescendant()))}">
-                            <!-- Level 0 categories -->
-                            <li class="list-group-item">
-                                <a th:href="'/' + ${categoryNode0.getAncestor().getId()}"
-                                   th:text="${categoryNode0.getAncestor().name}"></a>
-                            </li>
-
-                            <div th:if="${immediateDescendantsMap.get(categoryNode0.getAncestor()) != null}">
-                                <li class="list-group-item">
-                                    <ul class="list-group">
-                                        <div th:each="category1 : ${immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue1()}">
-                                            <!-- Level 1 categories -->
-                                            <li class="list-group-item inner">
-                                                <a th:href="'/' + ${category1.getId()}"
-                                                   th:text="${category1.name}"></a>
-                                            </li>
-
-                                            <div th:if="${immediateDescendantsMap.get(category1) != null}">
-                                                <li class="list-group-item inner">
-                                                    <ul class="list-group">
-                                                        <div th:each="category2 : ${immediateDescendantsMap.get(category1).getValue1()}">
-                                                            <!-- Level 2 categories -->
-                                                            <li class="list-group-item inner">
-                                                                <a th:href="'/' + ${category2.getId()}"
-                                                                   th:text="${category2.name}"></a>
-                                                            </li>
-                                                        </div>
-                                                    </ul>
-                                                </li>
-                                            </div>
-
-                                        </div>
-                                    </ul>
-                                </li>
-                            </div>
-                        </div>
-                    </div>
-                </ul>
             </div>
             <!-- /.col-lg-3 -->
 
@@ -106,12 +66,17 @@
                                         <div th:text="${item.price} + ' &#8381;'"></div>
                                     </h5>
                                     <div th:if="${#request.userPrincipal != null}">
-                                        <form name="addToBasket" id="itemId" action="/shoppingBasket" method="post">
+                                        <form name="addToBasket" id="addToBasket" action="/shoppingBasket" method="post">
                                             <input type="hidden" name="id" th:value="${item.id}">
                                             <input type="submit" value="to basket">
                                         </form>
                                         <div sec:authorize="hasRole('ADMIN')">
-                                            <span>Only for admin</span>
+                                            <!--<span>Only for admin</span>-->
+                                            <!-- Delete item, only for admin -->
+                                            <div id="delteItemDiv">
+                                                <input type="hidden" id="deleteItemItemId" name="id" th:value="${item.id}">
+                                                <button id="deleteItemBtn">delete</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -136,6 +101,9 @@
     <!-- About authors, mb links on fb, vk, tw, gh, etc -->
 </footer>
 <!--</div>-->
+
+
+<script th:src="@{/js/items/deleteItemIndex.js}"></script>
 
 </body>
 </html>

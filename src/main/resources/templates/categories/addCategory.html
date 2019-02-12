@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="~{head :: headFragment}">
+</head>
+<body>
+
+<div th:insert="~{menu_navbar :: menu}"></div>
+
+<main>
+
+    <div class="container">
+
+        <div class="row my-5">
+
+            <div class="col-lg-4"></div>
+
+            <div class="col-lg-8">
+
+                <div class="my-5">
+
+                    <h3>Add category</h3><br>
+
+                    <form method="post" action="/categories">
+
+                        <label class="font-weight-bold">Name: </label>
+                        <input type="text" name="name"><br><br>
+
+                        <label class="font-weight-bold">Child categories: </label><br>
+
+                        <div th:each="categoryNode0 : ${categoryTree}">
+                            <div th:if="${(immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue0().intValue() == 0) && (categoryNode0.getAncestor().equals(categoryNode0.getDescendant()))}">
+                                <!-- Level 0 categories -->
+                                <li class="list-group-item none-border">
+                                    <label th:text="${categoryNode0.getAncestor().name}"></label>
+                                    <input type="radio" name="category"
+                                           th:value="${categoryNode0.getAncestor().id}">
+                                </li>
+
+                                <div th:if="${immediateDescendantsMap.get(categoryNode0.getAncestor()) != null}">
+                                    <li class="list-group-item none-border">
+                                        <ul class="list-group">
+                                            <div th:each="category1 : ${immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue1()}">
+                                                <!-- Level 1 categories -->
+                                                <li class="list-group-item inner">
+                                                    <lable th:text="${category1.name}"></lable>
+                                                    <input type="radio" name="category"
+                                                           th:value="${category1.id}">
+                                                </li>
+
+                                                <div th:if="${immediateDescendantsMap.get(category1) != null}">
+                                                    <li class="list-group-item inner">
+                                                        <ul class="list-group">
+                                                            <div th:each="category2 : ${immediateDescendantsMap.get(category1).getValue1()}">
+                                                                <!-- Level 2 categories -->
+                                                                <li class="list-group-item inner">
+                                                                    <label th:text="${category2.name}"></label>
+                                                                    <input type="radio" name="category"
+                                                                           th:value="${category2.id}">
+                                                                </li>
+                                                            </div>
+                                                        </ul>
+                                                    </li>
+                                                </div>
+
+                                            </div>
+
+                                            <!--<a th:href="'/' + ${category0.getId()}"
+                                               th:text="${category0.name}"></a><br/>-->
+                                        </ul>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <input type="submit" value="add">
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>

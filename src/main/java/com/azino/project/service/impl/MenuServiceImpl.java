@@ -25,20 +25,6 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public ModelAndView addCategoriesToMenu(ModelAndView modelAndView) {
-        //Iterable<Category> categories = categoryService.findAll();
-
-        /* this map using for to mark level of categories in category multi-level list*/
-        /*Map<Long, Integer> categoriesUsedFlags = new HashMap<>();
-        for(Category category : categories){
-            if(null == category.getParent()) {
-                categoriesUsedFlags.put(category.getId(), 0);
-            }else{
-                categoriesUsedFlags.put(category.getId(), categoriesUsedFlags.get(category.getParent().getId()) + 1);
-            }
-        }*/
-
-        //modelAndView.getModelMap().addAttribute("categories", categories);
-        //modelAndView.getModelMap().addAttribute("categoriesUsedFlags", categoriesUsedFlags);
 
         Iterable<CategoryTree> categoryTree = categoryTreeService.findAll();
 

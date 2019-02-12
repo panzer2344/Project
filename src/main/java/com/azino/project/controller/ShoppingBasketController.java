@@ -102,8 +102,6 @@ public class ShoppingBasketController {
 
     @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
-    //public ModelAndView delete(@RequestParam("itemId") Long itemId, @RequestParam("shoppingBasketId") Long shoppingBasketId){
-    //public ModelAndView delete(@RequestBody DeleteFormShoppingBasket deleteFormShoppingBasket) {
     public HttpStatus delete(@RequestBody DeleteFormShoppingBasket deleteFormShoppingBasket) {
         shoppingBasketService
                 .deleteItemFromShoppingBasket(
@@ -111,21 +109,5 @@ public class ShoppingBasketController {
                         deleteFormShoppingBasket.getShoppingBasketId()
                 );
         return HttpStatus.OK;
-        //return new HttpStatus()
-        /*Item item = itemService
-                //.findById(itemId).orElse(new Item());
-                .findById(
-                        deleteFormShoppingBasket.getItemId())
-                .orElse(new Item());*/
-        /*if (!item.getId().equals((long) 0)) {
-         *//*shoppingBasketService
-                    //.findItemsInShoppingBasketById(shoppingBasketId)
-                    .findItemsInShoppingBasketById(
-                            deleteFormShoppingBasket.getShoppingBasketId())
-                    .remove(item);*//*
-         */
-        //return new ModelAndView("redirect:/shoppingBasket");
-        //}
-        //return new ModelAndView("redirect:/shoppingBasket", "error", "deleting failed");
     }
 }

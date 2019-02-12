@@ -12,4 +12,6 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
     @Override
     @Query("select c from Category c order by c.id asc")
     Iterable<Category> findAll();
+
+    Category getFirstByName(String name);
 }

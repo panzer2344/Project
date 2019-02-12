@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 
 @RestController
@@ -71,6 +72,14 @@ public class ItemController {
         model.addAttribute("items", items);
         model.addAttribute("imageService", imageService);
         return new ModelAndView("items/itemsPage");
+    }
+
+
+    @DeleteMapping("/{itemId}")
+    public String delete(@PathVariable("itemId") Long id, HttpServletResponse response){
+        response.setStatus(HttpServletResponse.SC_OK);
+        //itemService.deleteById(id);
+        return "Item " + id; /*+ " successfully deleted";*/
     }
 
 }
