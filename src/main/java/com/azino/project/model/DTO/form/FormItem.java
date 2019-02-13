@@ -19,6 +19,8 @@ public class FormItem {
 
     private Double price;
 
+    private Integer countInStock;
+
     private Set<Category> categories;
 
     /*@Autowired

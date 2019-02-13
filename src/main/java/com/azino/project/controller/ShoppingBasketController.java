@@ -73,32 +73,22 @@ public class ShoppingBasketController {
     @PostMapping
     @Transactional
     public ModelAndView add(@ModelAttribute FormItemId itemId, ModelMap modelMap, Principal principal) {
-        /* there User is com. ... . UserDetails User */
-        User user = (User) ((Authentication) principal).getPrincipal();
-        com.azino.project.model.User userModel = userService.fromUserDetailsUser(user);
-        ShoppingBasket shoppingBasket = shoppingBasketService.findByUserName(userModel.getName());
-        if (null == shoppingBasket) {
-            shoppingBasket = new ShoppingBasket(
-                    (long) 0,
-                    userService.fromUserDetailsUser(user),
-                    new ArrayList<>(),
-                    0.0
+
+        Item item = itemService.findById(itemId.getId()).orElse(new Item());
+
+        if(item.getCountInStock() == 0){
+            return new ModelAndView("redirect:/", "error", "item is out of stock");
+        } else {
+            shoppingBasketService.addToShoppingBasket(
+                    userService
+                            .fromUserDetailsUser(
+                                    (User) ((Authentication) principal).getPrincipal()
+                            ),
+                    item
             );
-            shoppingBasketService.save(shoppingBasket);
-            shoppingBasket = shoppingBasketService.findByUserName(userModel.getName());
+            return new ModelAndView("redirect:/shoppingBasket");
         }
-        shoppingBasket.getItems().add(
-                itemService.findById(itemId.getId()).orElse(new Item())
-        );
-        return new ModelAndView("redirect:/shoppingBasket");
     }
-
-
-    /* TODO: need to add pause to delete ajax query. Now it sends query many times.
-     * TODO: And need to repair delete service function. Mb make force method, like
-     * TODO: get list, delete entity from it, and then set this list as field in basket
-     * TODO: entity
-     * */
 
     @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional

@@ -7,6 +7,7 @@ import com.azino.project.repository.ItemRepository;
 import com.azino.project.repository.ShoppingBasketRepository;
 import com.azino.project.service.ShoppingBasketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,11 +70,56 @@ public class ShoppingBasketServiceImpl
     public void deleteItemFromShoppingBasket(Long itemId, Long shoppingBasketId) {
         //super.repository.deleteItemFromShoppingBasket(itemId, shoppingBasketId);
         Item item = itemRepository.findById(itemId).orElse(new Item());
+        item.setCountInStock(item.getCountInStock() + 1);
         List<Item> items = findItemsInShoppingBasketById(shoppingBasketId);
         items.remove(item);
         super.repository
                 .findById(shoppingBasketId)
                 .get()
                 .setItems(items);
+    }
+
+    @Override
+    public void deleteAllItemsFromShoppingBasket(Long shoppingBasketId) {
+        List<Item> items = findItemsInShoppingBasketById(shoppingBasketId);
+        items.forEach(item -> item.setCountInStock(item.getCountInStock() + 1));
+        items.clear();
+        super.repository
+                .findById(shoppingBasketId)
+                .get()
+                .setItems(items);
+    }
+
+    @Override
+    public void addToShoppingBasket(User user, Long itemId) {
+        Item item = itemRepository.findById(itemId).orElse(new Item());
+        item.setCountInStock(item.getCountInStock() - 1);
+        ShoppingBasket shoppingBasket = findByUserName(user.getName());
+        if (null == shoppingBasket) {
+            shoppingBasket = new ShoppingBasket(
+                    (long) 0,
+                    user,
+                    new ArrayList<>(),
+                    0.0
+            );
+            shoppingBasket = save(shoppingBasket);
+        }
+        shoppingBasket.getItems().add(item);
+    }
+
+    @Override
+    public void addToShoppingBasket(User user, Item item) {
+        item.setCountInStock(item.getCountInStock() - 1);
+        ShoppingBasket shoppingBasket = findByUserName(user.getName());
+        if (null == shoppingBasket) {
+            shoppingBasket = new ShoppingBasket(
+                    (long) 0,
+                    user,
+                    new ArrayList<>(),
+                    0.0
+            );
+            shoppingBasket = save(shoppingBasket);
+        }
+        shoppingBasket.getItems().add(item);
     }
 }

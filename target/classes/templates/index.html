@@ -1,36 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<!-- xmlns:sec="http://www.sprinfgramework.org/schema/security" -->
 <head th:include="~{head :: headFragment}">
-    <!--<meta charset="UTF-8">
-    <title>Title</title>
-
-    &lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-
-    &lt;!&ndash; jQuery library &ndash;&gt;
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    &lt;!&ndash; Popper JS &ndash;&gt;
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-
-    &lt;!&ndash; Latest compiled JavaScript &ndash;&gt;
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-
-    &lt;!&ndash; Font awesome icons etc &ndash;&gt;
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"/>
-    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"
-            integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1"
-            crossorigin="anonymous"></script>
-
-    &lt;!&ndash; Link to simple style rules for this page &ndash;&gt;
-    <link rel="stylesheet" th:href="@{/css/style.css}"/>-->
 
 </head>
 <body>
-<!--<div class="container">-->
-<!--<header>-->
-<!--<div class="container">-->
 
 <div th:insert="~{menu_navbar :: menu}"></div>
 
@@ -41,106 +16,20 @@
     <!-- Main content(items(products), their description, etc) -->
     <!-- Page Content -->
     <div class="container">
+
+        <div class="row my-5">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <div th:if="${#request.getParameter('error') != null}">
+                    <h5 style="color: red" th:text="${#request.getParameter('error')}"></h5>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-lg-3">
-                <h1 class="my-4">Shop Name</h1>
-                <ul class="my-4 list-group">
-
-                    <div th:each="categoryNode0 : ${categoryTree}">
-                        <div th:if="${(immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue0().intValue() == 0) && (categoryNode0.getAncestor().equals(categoryNode0.getDescendant()))}">
-                            <!-- Level 0 categories -->
-                            <li class="list-group-item">
-                                <a th:href="'/' + ${categoryNode0.getAncestor().getId()}"
-                                   th:text="${categoryNode0.getAncestor().name}"></a>
-                            </li>
-
-                            <div th:if="${immediateDescendantsMap.get(categoryNode0.getAncestor()) != null}">
-                                <li class="list-group-item">
-                                    <ul class="list-group">
-                                        <div th:each="category1 : ${immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue1()}">
-                                            <!-- Level 1 categories -->
-                                            <li class="list-group-item inner">
-                                                <a th:href="'/' + ${category1.getId()}"
-                                                   th:text="${category1.name}"></a>
-                                            </li>
-
-                                            <div th:if="${immediateDescendantsMap.get(category1) != null}">
-                                                <li class="list-group-item inner">
-                                                    <ul class="list-group">
-                                                        <div th:each="category2 : ${immediateDescendantsMap.get(category1).getValue1()}">
-                                                            <!-- Level 2 categories -->
-                                                            <li class="list-group-item inner">
-                                                                <a th:href="'/' + ${category2.getId()}"
-                                                                   th:text="${category2.name}"></a>
-                                                            </li>
-                                                        </div>
-                                                    </ul>
-                                                </li>
-                                            </div>
-
-                                        </div>
-
-                                        <!--<a th:href="'/' + ${category0.getId()}"
-                                           th:text="${category0.name}"></a><br/>-->
-                                    </ul>
-                                </li>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!--<div th:each="category : ${categories}">
-                        <li th:if="${categoriesUsedFlags.get(category.id) == 0}" class="list-group-item">
-                            &lt;!&ndash;<span style="hidden : true;" th:value="${categoriesUsedFlags.put(category.id, true)}"></span>&ndash;&gt;
-                            <a th:href="'/' + ${category.id}" th:text="${category.name}"></a>
-                            <ul th:if="${category.childs != null}" class="list-group">
-                                <div th:each="childCategoryLvl1 : ${category.childs}">
-                                    <li th:if="${categoriesUsedFlags.get(childCategoryLvl1.id) == 1}"
-                                        class="list-group-item inner">
-                                        &lt;!&ndash;<span style="hidden : true;" th:value="${categoriesUsedFlags.put(category.id, true)}"></span>&ndash;&gt;
-                                        <a th:href="'/' + ${childCategoryLvl1.id}" th:text="${childCategoryLvl1.name}"></a>
-                                        <ul th:if="${childCategoryLvl1.childs != null}" class="list-group">
-                                            <div th:each="childCategoryLvl2 : ${childCategoryLvl1.childs}">
-                                                <li th:if="${categoriesUsedFlags.get(childCategoryLvl2.id) == 2}"
-                                                    class="list-group-item inner">
-                                                    &lt;!&ndash;<span style="hidden : true;" th:value="${categoriesUsedFlags.put(category.id, true)}"></span>&ndash;&gt;
-                                                    <a th:href="'/' + ${childCategoryLvl2.id}" th:text="${childCategoryLvl2.name}"></a>
-                                                    <ul th:if="${childCategoryLvl2.childs != null}" class="list-group">
-                                                        <div th:each="childCategoryLvl3 : ${childCategoryLvl2.childs}">
-                                                            <li th:if="${categoriesUsedFlags.get(childCategoryLvl3.id) == 3}"
-                                                                class="list-group-item inner">
-                                                                &lt;!&ndash;<span style="hidden : true;" th:value="${categoriesUsedFlags.put(category.id, true)}"></span>&ndash;&gt;
-                                                                <a th:href="'/' + ${childCategoryLvl3.id}" th:text="${childCategoryLvl3.name}"></a>
-                                                                <ul th:if="${childCategoryLvl3.childs != null}" class="list-group">
-                                                                    <div th:each="childCategoryLvl4 : ${childCategoryLvl3.childs}">
-                                                                        <li th:if="${categoriesUsedFlags.get(childCategoryLvl4.id) == 4}"
-                                                                            class="list-group-item inner">
-                                                                            &lt;!&ndash;<span style="hidden : true;" th:value="${categoriesUsedFlags.put(category.id, true)}"></span>&ndash;&gt;
-                                                                            <a th:href="'/' + ${childCategoryLvl4.id}" th:text="${childCategoryLvl4.name}"></a>
-                                                                            <ul th:if="${childCategoryLvl4.childs != null}" class="list-group">
-                                                                                <div th:each="childCategoryLvl5 : ${childCategoryLvl4.childs}">
-                                                                                    <li th:if="${categoriesUsedFlags.get(childCategoryLvl5.id) == 5}"
-                                                                                        class="list-group-item inner">
-                                                                                        &lt;!&ndash;<span style="hidden : true;" th:value="${categoriesUsedFlags.put(category.id, true)}"></span>&ndash;&gt;
-                                                                                        <a th:href="'/' + ${childCategoryLvl5.id}" th:text="${childCategoryLvl5.name}"></a>
-                                                                                    </li>
-                                                                                </div>
-                                                                            </ul>
-                                                                        </li>
-                                                                    </div>
-                                                                </ul>
-                                                            </li>
-                                                        </div>
-                                                    </ul>
-                                                </li>
-                                            </div>
-                                        </ul>
-                                    </li>
-                                </div>
-                            </ul>
-                        </li>
-                    </div>-->
-                </ul>
+                <div th:insert="~{categories/categoryBlock :: categories}"></div>
+                <div th:insert="~{items/findFilter :: priceFilter}"></div>
             </div>
             <!-- /.col-lg-3 -->
 
@@ -174,6 +63,7 @@
                 </div>-->
 
                 <div class="row my-4">
+
                     <div th:each="item : ${items}">
                         <div class="col-lg-4 col-md-6 my-4">
                             <div class="card h-100">
@@ -186,11 +76,27 @@
                                     <h5>
                                         <div th:text="${item.price} + ' &#8381;'"></div>
                                     </h5>
+                                    <h5>
+                                        <div th:text="'Count: ' + ${item.countInStock}"></div>
+                                    </h5>
                                     <div th:if="${#request.userPrincipal != null}">
-                                        <form name="itemId" id="itemId" action="/shoppingBasket" method="post">
+                                        <form name="addToBasket" id="addToBasket" action="/shoppingBasket" method="post">
                                             <input type="hidden" name="id" th:value="${item.id}">
                                             <input type="submit" value="to basket">
                                         </form>
+                                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                                            <!--<span>Only for admin</span>-->
+                                            <!-- Delete item, only for admin -->
+                                            <div id="delteItemDiv">
+                                                <input type="hidden"
+                                                       th:id="'deleteItemItemId' + ${item.id}"
+                                                       name="id"
+                                                       th:value="${item.id}">
+                                                <button class="deleteItemBtn" th:id="'deleteItemBtn' + ${item.id}">
+                                                    delete
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -214,6 +120,9 @@
     <!-- About authors, mb links on fb, vk, tw, gh, etc -->
 </footer>
 <!--</div>-->
+
+
+<script th:src="@{/js/items/deleteItemIndex.js}"></script>
 
 </body>
 </html>

@@ -23,4 +23,10 @@ public interface ShoppingBasketService extends BaseService<ShoppingBasket> {
     List<Item> findItemsInShoppingBasket(ShoppingBasket sb);
 
     void deleteItemFromShoppingBasket(Long itemId, Long shoppingBasketId);
+
+    void deleteAllItemsFromShoppingBasket(Long shoppingBasketId);
+
+    void addToShoppingBasket(User user, Long itemId);
+
+    void addToShoppingBasket(User user, Item item);
 }
