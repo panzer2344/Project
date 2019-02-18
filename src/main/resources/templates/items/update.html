@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="~{head :: headFragment}">
+
+</head>
+<body>
+
+<div th:insert="~{menu_navbar :: menu}"></div>
+
+<main>
+    <div class="container">
+        <div class="row my-5">
+
+            <input type="hidden" id="id" th:value="${item.id}">
+
+            <label>Old name: </label>
+            <div th:text="${item.name}"></div>
+            <label>New name: </label>
+            <input type="text" id="name" name="name">
+            <br>
+
+            <label>Old price: </label>
+            <div th:text="${item.price} + ' &#8381;'"></div>
+            <label>New price: </label>
+            <input type="number" id="price" name="price">
+            <br>
+
+            <label>Old count: </label>
+            <div th:text="'Count: ' + ${item.countInStock}"></div><br>
+            <label>New count: </label>
+            <input type="number" id="count" name="count">
+            <br>
+
+            <button id="updateBtn">update</button>
+
+        </div>
+    </div>
+</main>
+<script th:src="@{/js/items/update.js}"></script>
+</body>
+</html>

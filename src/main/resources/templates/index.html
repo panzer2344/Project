@@ -87,7 +87,7 @@
                                         <div sec:authorize="hasRole('ROLE_ADMIN')">
                                             <!--<span>Only for admin</span>-->
                                             <!-- Delete item, only for admin -->
-                                            <div id="delteItemDiv">
+                                            <div id="deleteItemDiv">
                                                 <input type="hidden"
                                                        th:id="'deleteItemItemId' + ${item.id}"
                                                        name="id"
@@ -95,6 +95,11 @@
                                                 <button class="deleteItemBtn" th:id="'deleteItemBtn' + ${item.id}">
                                                     delete
                                                 </button>
+                                            </div>
+                                            <div id="updateItemDiv">
+                                                <a th:href="'/items/update/' + ${item.id}">
+                                                    <button>update</button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
