@@ -22,7 +22,16 @@
                     <div sec:authorize="hasRole('ROLE_ADMIN')">
                         <!--<span>Only for admin</span>-->
                         <!-- Delete item, only for admin -->
-                        <a href="/categories/addPage">Add category</a>
+                        <div>
+                            <a href="/categories/addPage">Add category</a><br>
+                            <a href="/categories/delete">Delete category</a><br>
+                            <a href="/categories/update">Update category</a><br>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <a th:href="'/users/update/' + ${user.name}">Update user info</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -33,22 +42,22 @@
                     <div th:if="${user != null}">
 
                         <div th:if="${user.name != null && !user.name.equals('')}">
-                            <label>Username: </label>
+                            <label class="font-weight-bold">Username: </label>
                             <label th:text="${user.name}"></label>
                         </div>
 
                         <div th:if="${user.firstName != null && !user.firstName.equals('')}">
-                            <label>First name: </label>
+                            <label class="font-weight-bold">First name: </label>
                             <label th:text="${user.firstName}"></label>
                         </div>
 
                         <div th:if="${user.lastName != null && !user.lastName.equals('')}">
-                            <label>Last name: </label>
+                            <label class="font-weight-bold">Last name: </label>
                             <label th:text="${user.lastName}"></label>
                         </div>
 
                         <div th:if="${user.age != null}">
-                            <label>Age: </label>
+                            <label class="font-weight-bold">Age: </label>
                             <label th:text="${user.age}"></label>
                         </div>
 

@@ -72,4 +72,14 @@ public class CategoryTreeServiceImpl
     public Iterable<CategoryTree> findAllByDescendantId(Long id) {
         return super.repository.findAllByDescendant_Id(id);
     }
+
+    @Override
+    public Category findImmediateParent(Long id) {
+        return repository.findImmediateParent(id);
+    }
+
+    @Override
+    public Iterable<CategoryTree> findAllByAncestorId(Long id) {
+        return repository.findAllByAncestor_Id(id);
+    }
 }

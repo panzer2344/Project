@@ -1,5 +1,6 @@
 package com.azino.project.controller;
 
+import com.azino.project.model.Category;
 import com.azino.project.model.DTO.form.FormItem;
 import com.azino.project.model.Item;
 import com.azino.project.service.ImageService;
@@ -95,12 +96,12 @@ public class ItemController {
     @GetMapping("update/{id}")
     public ModelAndView getUpdatePage(ModelMap modelMap, @PathVariable Long id) {
         modelMap.addAttribute(itemService.findById(id).get());
-        return new ModelAndView("items/update");
+        return new ModelAndView("forward:/menu/items/update");
     }
 
     @PutMapping("update/{id}")
     @Transactional
-    public String update(@PathVariable Long id, @RequestBody FormItem formItem, ModelMap modelMap, Principal principal) {
+    public String update(@PathVariable Long id, @RequestBody FormItem formItem, Principal principal) {
         Item item = itemService.findById(id).get();
         if (formItem.getAvatar() != null) {
             item.setAvatar(

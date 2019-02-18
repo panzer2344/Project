@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -94,6 +95,28 @@ public class UserController {
         String username = userService.findByName(name).getName();
         userService.deleteByName(username);
         return new ModelAndView("redirect:/menu/index", HttpStatus.OK);
+    }
+
+    @GetMapping("update/{name}")
+    public ModelAndView getUpdatePage(ModelMap modelMap, @PathVariable String name){
+        modelMap.addAttribute("user", userService.findByName(name));
+        return new ModelAndView("forward:/menu/users/update");
+    }
+
+    @PutMapping("update/{name}")
+    @Transactional
+    public String update(@PathVariable String name, @RequestBody User formUser){
+        User user = userService.findByName(name);
+        if(formUser.getFirstName() != null){
+            user.setFirstName(formUser.getFirstName());
+        }
+        if(formUser.getLastName() != null){
+            user.setLastName(formUser.getLastName());
+        }
+        if(formUser.getAge() != null){
+            user.setAge(formUser.getAge());
+        }
+        return "Ok";
     }
 
 }

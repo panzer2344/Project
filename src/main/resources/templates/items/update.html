@@ -10,29 +10,104 @@
 
 <main>
     <div class="container">
+
         <div class="row my-5">
+            <div>
+                <h3>Update item</h3>
+            </div>
+        </div>
 
-            <input type="hidden" id="id" th:value="${item.id}">
+        <div class="row my-5">
+            <div class="my-4">
+                <input type="hidden" id="id" th:value="${item.id}">
 
-            <label>Old name: </label>
-            <div th:text="${item.name}"></div>
-            <label>New name: </label>
-            <input type="text" id="name" name="name">
-            <br>
+                <div>
+                    <label class="font-weight-bold">Old name: </label>
+                    <div th:text="${item.name}"></div>
+                </div>
+                <div>
+                    <label class="font-weight-bold">New name: </label>
+                    <input type="text" id="name" name="name">
+                </div>
 
-            <label>Old price: </label>
-            <div th:text="${item.price} + ' &#8381;'"></div>
-            <label>New price: </label>
-            <input type="number" id="price" name="price">
-            <br>
+                <div>
+                    <label class="font-weight-bold">Old price: </label>
+                    <div th:text="${item.price} + ' &#8381;'"></div>
+                </div>
+                <div>
+                    <label class="font-weight-bold">New price: </label>
+                    <input type="number" id="price" name="price">
+                </div>
 
-            <label>Old count: </label>
-            <div th:text="'Count: ' + ${item.countInStock}"></div><br>
-            <label>New count: </label>
-            <input type="number" id="count" name="count">
-            <br>
+                <div>
+                    <label class="font-weight-bold">Old count: </label>
+                    <div th:text="'Count: ' + ${item.countInStock}"></div>
+                    <br>
+                </div>
+                <div>
+                    <label class="font-weight-bold">New count: </label>
+                    <input type="number" id="count" name="count">
+                </div>
 
-            <button id="updateBtn">update</button>
+
+                <label>Categories: </label>
+                <!--<th:block th:each="category : ${categories}">
+                    <input type="checkbox" name="categories" th:value="${category.id}">
+                    <label th:text="${category.name}"></label><br/>
+                </th:block>-->
+                <ul class="my-4 list-group">
+                    <div th:each="categoryNode0 : ${categoryTree}">
+                        <div th:if="${(immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue0().intValue() == 0) && (categoryNode0.getAncestor().equals(categoryNode0.getDescendant()))}">
+                            <!-- Level 0 categories -->
+                            <li class="list-group-item">
+                                <label th:text="${categoryNode0.getAncestor().name}"></label>
+                                <input type="checkbox" name="categories"
+                                       th:value="${categoryNode0.getAncestor().id}">
+                            </li>
+
+                            <div th:if="${immediateDescendantsMap.get(categoryNode0.getAncestor()) != null}">
+                                <li class="list-group-item">
+                                    <ul class="list-group">
+                                        <div th:each="category1 : ${immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue1()}">
+                                            <!-- Level 1 categories -->
+                                            <li class="list-group-item inner">
+                                                <lable th:text="${category1.name}"></lable>
+                                                <input type="checkbox" name="categories"
+                                                       th:value="${category1.id}">
+                                            </li>
+
+                                            <div th:if="${immediateDescendantsMap.get(category1) != null}">
+                                                <li class="list-group-item inner">
+                                                    <ul class="list-group">
+                                                        <div th:each="category2 : ${immediateDescendantsMap.get(category1).getValue1()}">
+                                                            <!-- Level 2 categories -->
+                                                            <li class="list-group-item inner">
+                                                                <label th:text="${category2.name}"></label>
+                                                                <input type="checkbox" name="categories"
+                                                                       th:value="${category2.id}">
+                                                            </li>
+                                                        </div>
+                                                    </ul>
+                                                </li>
+                                            </div>
+
+                                        </div>
+
+                                        <!--<a th:href="'/' + ${category0.getId()}"
+                                           th:text="${category0.name}"></a><br/>-->
+                                    </ul>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+
+
+
+                <div>
+                    <button id="updateBtn">update</button>
+                </div>
+            </div>
 
         </div>
     </div>

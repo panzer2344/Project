@@ -9,4 +9,6 @@ public interface CategoryService extends BaseService<Category> {
     Category add(String name);
 
     Category findFirstByName(String name);
+
+    void delete(Long id);
 }

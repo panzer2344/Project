@@ -26,7 +26,7 @@
                         <label class="font-weight-bold">Name: </label>
                         <input type="text" name="name"><br><br>
 
-                        <label class="font-weight-bold">Child categories: </label><br>
+                        <label class="font-weight-bold">Parent category: </label><br>
 
                         <div th:each="categoryNode0 : ${categoryTree}">
                             <div th:if="${(immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue0().intValue() == 0) && (categoryNode0.getAncestor().equals(categoryNode0.getDescendant()))}">

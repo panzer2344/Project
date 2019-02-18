@@ -4,12 +4,19 @@ $(document).ready(function () {
         var itemName = $('#name').val();
         var itemPrice = $('#price').val();
         var itemCount = $('#count').val();
+        var categories = [];
+        $('input[name = categories]:checked').each(function () {
+            categories.push({
+                'id' : $(this).val()
+            });
+        });
+        //var categories = $('input[name = categories]:checked').val();
         var data = {
             'avatar' : null,
             'name' : itemName === '' ? null : itemName,
             'price' : itemPrice === '' ? null : parseInt(itemPrice),
             'countInStock' : itemCount === '' ? null : parseInt(itemPrice),
-            'categories' : null,
+            'categories' : categories,
         };
         $.ajax({
             url: '/items/update/' + itemId,

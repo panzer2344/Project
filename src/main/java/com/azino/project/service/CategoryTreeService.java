@@ -23,4 +23,8 @@ public interface CategoryTreeService extends BaseService<CategoryTree> {
 
     Iterable<CategoryTree> findAllByDescendantId(Long id);
 
+    Category findImmediateParent(Long id);
+
+    Iterable<CategoryTree> findAllByAncestorId(Long id);
+
 }
