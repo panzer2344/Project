@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="~{head :: headFragment}">
+
+</head>
+<body>
+
+<div th:insert="~{menu_navbar :: menu}"></div>
+
+<main>
+    <div class="container">
+        <div class="row my-5">
+            <h1 class="my-4">User info</h1>
+        </div>
+        <div class="row my-5">
+            <div class="my-4" th:if="${#request.userPrincipal != null}">
+                <div th:if="${user != null}">
+
+                    <div th:if="${user.name != null && !user.name.equals('')}">
+                        <label class="font-weight-bold">Username: </label>
+                        <label id="userName" th:text="${user.name}"></label>
+                    </div>
+
+                    <!--<div>
+                        <label>New password: </label>
+                        <input type="text" id="password" name="password">
+                    </div>-->
+
+                    <div th:if="${user.firstName != null && !user.firstName.equals('')}">
+                        <div>
+                            <label class="font-weight-bold">Old first name: </label>
+                            <label th:text="${user.firstName}"></label>
+                        </div>
+                        <div>
+                            <label class="font-weight-bold">New first name: </label>
+                            <input type="text" name="firstName" id="firstName">
+                        </div>
+                    </div>
+
+                    <div th:if="${user.lastName != null && !user.lastName.equals('')}">
+                        <div>
+                            <label class="font-weight-bold">Old last name: </label>
+                            <label th:text="${user.lastName}"></label>
+                        </div>
+                        <div>
+                            <label class="font-weight-bold">New last name: </label>
+                            <input type="text" name="lastName" id="lastName">
+                        </div>
+                    </div>
+
+                    <div th:if="${user.age != null}">
+                        <div>
+                            <label class="font-weight-bold">Old age: </label>
+                            <label th:text="${user.age}"></label>
+                        </div>
+                        <div>
+                            <label class="font-weight-bold">New age: </label>
+                            <input type="number" name="age" id="age">
+                        </div>
+                    </div>
+
+                    <div th:if="${user.roles != null}">
+                        <label class="font-weight-bold">Old roles: </label>
+                        <div th:each="role : ${user.roles}">
+                            <label>Role: </label>
+                            <label th:text="${role.name}"></label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button class="font-weight-bold" id="updateBtn">update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script th:src="@{/js/users/update.js}"></script>
+
+</body>
+</html>

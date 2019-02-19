@@ -48,23 +48,4 @@ public class IndexController {
         );
         return indexFiltered(modelMap);
     }
-
-    /*@GetMapping("")
-    public ModelAndView index(ModelMap model) {
-        Iterable<Item> items = itemService.findAll();
-
-        model.addAttribute("items", items);
-        model.addAttribute("imageService", imageService);
-
-        return new ModelAndView("forward:/menu/index", model);
-    }
-
-    @GetMapping("{categoryId}")
-    public ModelAndView index(@PathVariable Long categoryId, ModelMap modelMap) {
-        //Iterable<Item> items = itemService.findAllByCategoryContains(categoryId);
-        Iterable<Item> items = itemService.findItemWithDescendantsByCategoryContains(categoryId);
-        modelMap.addAttribute("items", items);
-        modelMap.addAttribute("imageService", imageService);
-        return new ModelAndView("forward:/menu/index", modelMap);
-    }*/
 }

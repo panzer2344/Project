@@ -83,13 +83,6 @@ public class UserController {
         return "All users successfully deleted";
     }
 
-    /*@DeleteMapping("{id}")
-    public String delete(@PathVariable Long id) {
-        Long userId = userService.findById(id).get().getId();
-        userService.deleteById(userId);
-        return "User (id = " + userId + " has been has successfully deleted";
-    }*/
-
     @DeleteMapping("{name}")
     public ModelAndView delete(@PathVariable String name) {
         String username = userService.findByName(name).getName();

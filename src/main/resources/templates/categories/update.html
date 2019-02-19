@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="~{head :: headFragment}">
+</head>
+<body>
+
+<div th:insert="~{menu_navbar :: menu}"></div>
+
+<main>
+
+    <div class="container">
+
+        <div class="row my-5">
+
+            <div class="col-lg-4"></div>
+
+            <div class="col-lg-8">
+
+                <div class="my-5">
+
+                    <h3>Update category</h3><br>
+
+                    <div th:each="categoryNode0 : ${categoryTree}">
+                        <div th:if="${(immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue0().intValue() == 0) && (categoryNode0.getAncestor().equals(categoryNode0.getDescendant()))}">
+                            <!-- Level 0 categories -->
+                            <li class="list-group-item none-border">
+                                <label th:text="${categoryNode0.getAncestor().name} + ' #' + ${categoryNode0.getAncestor().id}"></label>
+                            </li>
+
+                            <div th:if="${immediateDescendantsMap.get(categoryNode0.getAncestor()) != null}">
+                                <li class="list-group-item none-border">
+                                    <ul class="list-group">
+                                        <div th:each="category1 : ${immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue1()}">
+                                            <!-- Level 1 categories -->
+                                            <li class="list-group-item inner">
+                                                <lable th:text="${category1.name} + ' #' + ${category1.id}"></lable>
+                                            </li>
+
+                                            <div th:if="${immediateDescendantsMap.get(category1) != null}">
+                                                <li class="list-group-item inner">
+                                                    <ul class="list-group">
+                                                        <div th:each="category2 : ${immediateDescendantsMap.get(category1).getValue1()}">
+                                                            <!-- Level 2 categories -->
+                                                            <li class="list-group-item inner">
+                                                                <label th:text="${category2.name} + ' #' + ${category2.id}"></label>
+                                                            </li>
+                                                        </div>
+                                                    </ul>
+                                                </li>
+                                            </div>
+
+                                        </div>
+
+                                        <!--<a th:href="'/' + ${category0.getId()}"
+                                           th:text="${category0.name}"></a><br/>-->
+                                    </ul>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <label class="font-weight-bold">Category id:</label>
+                            <input type="number" name="categoryId" id="categoryId">
+                        </div>
+                        <div>
+                            <label class="font-weight-bold">Category name: </label>
+                            <input type="text" name="categoryName" id="categoryName">
+                        </div>
+                    </div>
+
+                    <div>
+                        <button id="updateBtn">update</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<script th:src="@{/js/categories/update.js}"></script>
+</body>
+</html>

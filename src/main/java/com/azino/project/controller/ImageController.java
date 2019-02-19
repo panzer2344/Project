@@ -24,14 +24,6 @@ public class ImageController {
         this.userService = userService;
     }
 
-    /*@PostMapping(value = "upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @SuppressWarnings("unchecked")
-    public Image upload(@RequestParam("avatar") MultipartFile file){
-        Optional<User> userOptional = userService.findById((long) 1);
-        User user = userOptional.orElse(new User());
-        return imageService.save(file, user);
-    }*/
-
     @PostMapping(value = "upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @SuppressWarnings("unchecked")
     public Image upload(@RequestParam("avatar") MultipartFile file, Principal principal) {
@@ -50,11 +42,6 @@ public class ImageController {
     public ModelAndView getPage() {
         return new ModelAndView("images/getImage");
     }
-
-    /*@GetMapping("{id}")
-    public String getEncodedImage(@PathVariable Long id){
-        return imageService.getEncodedImage(id);
-    }*/
 
     @GetMapping("{id}")
     public String getEncodedImage(@PathVariable Long id) {

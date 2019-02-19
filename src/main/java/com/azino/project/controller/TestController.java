@@ -28,13 +28,6 @@ public class TestController {
         return new ModelAndView("index");
     }
 
-    /*@GetMapping("itemsBStest")
-    public ModelAndView itemsBStest(Model model){
-        Iterable<Item> items = itemService.findAll();
-        model.addAttribute("items", items);
-        model.addAttribute("imageService", imageService);
-        return new ModelAndView("index");
-    }*/
 
     @GetMapping("old_menu")
     public ModelAndView index(){

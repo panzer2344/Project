@@ -17,18 +17,6 @@ public class ImageServiceImpl extends BaseServiceImpl<Image, ImageRepository> im
         super(imageRepository);
     }
 
-    /*public Image save(MultipartFile file, User author){
-        Image image = null;
-        try {
-            image = new Image(file.getBytes(), author);
-            save(image);
-        }
-        catch (IOException ioe){
-            ioe.printStackTrace();
-        }
-        return image;
-    }*/
-
     public Image save(MultipartFile file, User author) {
         Image image = null;
         try {
@@ -39,16 +27,6 @@ public class ImageServiceImpl extends BaseServiceImpl<Image, ImageRepository> im
         }
         return image;
     }
-
-
-    /*public String getEncodedImage(Long id){
-        String result = "";
-        Optional<Image> image = findById(id);
-        if(image.isPresent()){
-            result = Base64.getEncoder().encodeToString(image.get().getData());
-        }
-        return result;
-    }*/
 
     public String getEncodedImage(Long id) {
         return findById(id).orElse(new Image()).getData();
