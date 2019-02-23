@@ -1,5 +1,6 @@
 package com.azino.project.service;
 
+import com.azino.project.model.DTO.form.FormUser;
 import com.azino.project.model.User;
 
 public interface UserService extends BaseService<User> {
@@ -7,4 +8,6 @@ public interface UserService extends BaseService<User> {
 
     User deleteByName(String userName);
     User fromUserDetailsUser(org.springframework.security.core.userdetails.User user);
+
+    User fromFormUser(FormUser formUser);
 }

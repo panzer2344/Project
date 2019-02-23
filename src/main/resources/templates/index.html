@@ -47,7 +47,7 @@
                                         <div th:text="${item.name}"></div>
                                     </h4>
                                     <h5>
-                                        <div th:text="${item.price} + ' &#8381;'"></div>
+                                        <div th:text="${#numbers.formatDecimal(item.price, 1, 1, 'POINT')} + ' &#8381;'"></div>
                                     </h5>
                                     <h5>
                                         <div th:text="'Count: ' + ${item.countInStock}"></div>

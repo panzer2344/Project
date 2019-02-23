@@ -1,10 +1,15 @@
-package com.azino.project.model;
+package com.azino.project.model.DTO.form;
 
+import com.azino.project.model.Role;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -12,14 +17,10 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 
-@Entity
 @Data
 @NoArgsConstructor
-public class User implements IModel {
-
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;*/
+@AllArgsConstructor
+public class FormUser {
 
     @Id
     @Type(type = "java.lang.String")
@@ -59,28 +60,19 @@ public class User implements IModel {
     public static final int PASSWORD_MIN_LENGTH = 1;
 
     @Transient
-    public static final int PASSWORD_MAX_LENGTH = Integer.MAX_VALUE;
+    public static final int PASSWORD_MAX_LENGTH = 30;
 
-    public User(String name, String password) {
+    public FormUser(String name, String password) {
         this.name = name;
         this.password = password;
     }
 
-    public User(String name, String password, String firstName, String lastName, Integer age) {
+    public FormUser(String name, String password, String firstName, String lastName, Integer age) {
         this.name = name;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-    }
-
-    public User(String name, String password, String firstName, String lastName, Integer age, Set<Role> roles) {
-        this.name = name;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.roles = roles;
     }
 
 }

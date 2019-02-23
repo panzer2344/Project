@@ -21,6 +21,10 @@ $(document).ready(function () {
                     ' }\n textStatus = { ' + textStatus +
                     ' }\n jqXHR.status = { ' + jqXHR.status + ' }');
                 window.location.href = "/account";
+            },
+            error : function (request, status, error) {
+                var response = JSON.parse(request.responseText);
+                alert(response['error'] + '\n' + response['message']);
             }
         });
     });

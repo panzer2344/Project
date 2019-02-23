@@ -111,6 +111,18 @@
 			<version>2.1.1.RELEASE</version>
 		</dependency>
 
+		<!-- Hibernate validator-->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
+		<!-- Validation api -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
 
 		<!-- Java tuples -->
 		<!-- https://mvnrepository.com/artifact/org.javatuples/javatuples -->

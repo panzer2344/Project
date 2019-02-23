@@ -30,15 +30,17 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     @Query("select i From Item i join i.categories c where c.id in :ids")
     Iterable<Item> findAllByCategoriesContainsIds(@Param("ids") List<Long> ids);
 
-    @Query("select i From Item i join i.categories c where c in :categories")
+    @Query("select distinct i From Item i join i.categories c where c in :categories")
     Iterable<Item> findAllByCategoriesContains(@Param("categories") Iterable<Category> categories);
 
-    @Query("select i From Item i join i.categories c where c.id in :ids")
+    @Query("select distinct i From Item i join i.categories c where c.id in :ids")
     Iterable<Item> findAllByCategoriesContainsIds(@Param("ids") Iterable<Long> ids);
 
     Iterable<Item> findByName(String name);
 
     @Query("select i from Item i where i.price >= :fromPrice and i.price <= :toPrice")
     Iterable<Item> findWithPriceFilter(@Param("fromPrice") Double from, @Param("toPrice") Double to);
+
+    Iterable<Item> findByNameContaining(String name);
 
 }

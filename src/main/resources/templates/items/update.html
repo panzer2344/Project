@@ -12,41 +12,43 @@
     <div class="container">
 
         <div class="row my-5">
+            <!--<div th:insert="~{errors/error :: errorBlock}" class="my-5"></div>-->
             <div>
                 <h3>Update item</h3>
             </div>
+            <div class="my-5 text-danger border border-danger" hidden="true"></div>
         </div>
 
         <div class="row my-5">
             <div class="my-4">
                 <input type="hidden" id="id" th:value="${item.id}">
 
-                <div>
+                <!--<div>
                     <label class="font-weight-bold">Old name: </label>
                     <div th:text="${item.name}"></div>
-                </div>
+                </div>-->
                 <div>
                     <label class="font-weight-bold">New name: </label>
-                    <input type="text" id="name" name="name">
+                    <input type="text" id="name" name="name" th:value="${item.name}">
                 </div>
 
-                <div>
+                <!--<div>
                     <label class="font-weight-bold">Old price: </label>
                     <div th:text="${item.price} + ' &#8381;'"></div>
-                </div>
+                </div>-->
                 <div>
                     <label class="font-weight-bold">New price: </label>
-                    <input type="number" id="price" name="price">
+                    <input type="number" id="price" name="price" th:value="${item.price}">
                 </div>
 
-                <div>
+                <!--<div>
                     <label class="font-weight-bold">Old count: </label>
                     <div th:text="'Count: ' + ${item.countInStock}"></div>
                     <br>
-                </div>
+                </div>-->
                 <div>
                     <label class="font-weight-bold">New count: </label>
-                    <input type="number" id="count" name="count">
+                    <input type="number" id="count" name="count" th:value="${item.countInStock}">
                 </div>
 
 
@@ -61,7 +63,9 @@
                             <!-- Level 0 categories -->
                             <li class="list-group-item">
                                 <label th:text="${categoryNode0.getAncestor().name}"></label>
-                                <input type="checkbox" name="categories"
+                                <input type="checkbox"
+                                       name="categories"
+                                       th:checked="${item.categories.contains(categoryNode0.getAncestor())}"
                                        th:value="${categoryNode0.getAncestor().id}">
                             </li>
 
@@ -72,7 +76,9 @@
                                             <!-- Level 1 categories -->
                                             <li class="list-group-item inner">
                                                 <lable th:text="${category1.name}"></lable>
-                                                <input type="checkbox" name="categories"
+                                                <input type="checkbox"
+                                                       name="categories"
+                                                       th:checked="${#sets.contains(item.categories, category1)}"
                                                        th:value="${category1.id}">
                                             </li>
 
@@ -83,7 +89,9 @@
                                                             <!-- Level 2 categories -->
                                                             <li class="list-group-item inner">
                                                                 <label th:text="${category2.name}"></label>
-                                                                <input type="checkbox" name="categories"
+                                                                <input type="checkbox"
+                                                                       name="categories"
+                                                                       th:checked="${#sets.contains(item.categories, category2)}"
                                                                        th:value="${category2.id}">
                                                             </li>
                                                         </div>

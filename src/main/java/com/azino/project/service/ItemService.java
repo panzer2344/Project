@@ -31,4 +31,6 @@ public interface ItemService extends BaseService<Item>{
 
     List<Item> findItemsWithPriceFilter(Double from, Double to);
 
+    List<Item> findByNameContaining(String name);
+
 }

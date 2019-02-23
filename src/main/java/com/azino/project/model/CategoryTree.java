@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -22,5 +25,7 @@ public class CategoryTree implements IModel {
     @OneToOne(targetEntity = Category.class)
     private Category descendant;
 
+    @Min(0)
+    @Max(4)
     private Integer level;
 }

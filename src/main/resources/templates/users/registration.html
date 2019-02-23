@@ -17,7 +17,8 @@
 
             </div>
 
-            <form action="/users" method="post" name="newUser">
+            <!--<form action="/users" method="post" name="newUser">-->
+            <div>
                 <label>Username: </label> <input type="text" name="name" id="tbUsername"/><br/>
                 <label>Password: </label> <input type="text" name="password" id="tbPassword"/><br/>
                 <label>First name: </label> <input type="text" name="firstName" id="tbFirstName"/><br/>
@@ -25,14 +26,18 @@
                 <label>Age: </label> <input type="number" name="age" id="tbAge"/><br/>
                 <th:block th:each="role : ${roles}">
                     <input type="checkbox" name="roles" th:value="${role.id}">
-                    <label th:text="${role.name}"></label><br/>
+                    <label th:id="'lRoleName' + ${role.id}" th:text="${role.name}"></label><br/>
                 </th:block>
-                <input type="submit" name="submit" id="submit" value="SignUp"/><br/>
-            </form>
+                <!--<input type="submit" name="submit" id="submit" value="SignUp"/><br/>-->
+                <button id="btnSubmit">SignUp</button>
+            </div>
+            <!--</form>-->
         </div>
     </div>
 
 </main>
+
+<script th:src="@{/js/users/registration.js}"></script>
 
 </body>
 </html>

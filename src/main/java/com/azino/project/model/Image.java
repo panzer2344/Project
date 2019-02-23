@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -17,9 +18,11 @@ public class Image implements IModel {
 
     //private byte[] data;
     @Type(type = "org.hibernate.type.TextType")
+    @NotNull
     private String data;
 
     @ManyToOne
+    @NotNull
     private User author;
 
     /*public Image(byte[] data, User author) {

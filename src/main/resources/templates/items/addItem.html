@@ -12,6 +12,7 @@
         <div class="container">
             <div class="row my-5">
                 <div class="my-5">
+                    <div th:insert="~{errors/error :: errorBlock}" class="my-5"></div>
                     <h3>Add new item</h3><br/>
                     <!--<div class="row my-5">-->
                     <form action="/items" name="addItem" novalidate id="fAddItem" method="post"

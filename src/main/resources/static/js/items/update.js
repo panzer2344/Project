@@ -15,7 +15,7 @@ $(document).ready(function () {
             'avatar' : null,
             'name' : itemName === '' ? null : itemName,
             'price' : itemPrice === '' ? null : parseInt(itemPrice),
-            'countInStock' : itemCount === '' ? null : parseInt(itemPrice),
+            'countInStock' : itemCount === '' ? null : parseInt(itemCount),
             'categories' : categories,
         };
         $.ajax({
@@ -28,6 +28,10 @@ $(document).ready(function () {
                     ' }\n textStatus = { ' + textStatus +
                     ' }\n jqXHR.status = { ' + jqXHR.status + ' }');
                 window.location.href = "/";
+            },
+            error : function (request, status, error) {
+                var response = JSON.parse(request.responseText);
+                alert(response['error'] + '\n' + response['message']);
             }
         });
     });

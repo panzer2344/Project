@@ -19,7 +19,8 @@ public class SearchController {
 
     @GetMapping
     public ModelAndView getItemsByName(@RequestParam("text") String name, ModelMap modelMap){
-        modelMap.addAttribute("items", itemService.findByName(name));
+        //modelMap.addAttribute("items", itemService.findByName(name));
+        modelMap.addAttribute("items", itemService.findByNameContaining(name));
         return new ModelAndView("forward:/filtered");
     }
 

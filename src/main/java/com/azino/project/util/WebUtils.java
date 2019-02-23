@@ -2,6 +2,7 @@ package com.azino.project.util;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.validation.BindingResult;
 
 import java.util.Collection;
 
@@ -27,5 +28,17 @@ public class WebUtils {
             sb.append(")");
         }
         return sb.toString();
+    }
+
+    public static StringBuilder bindingResultErrorsToString(BindingResult bindingResult){
+        StringBuilder error = new StringBuilder();
+        bindingResult.getFieldErrors().forEach(
+                fieldError -> error
+                        .append(fieldError.getField())
+                        .append(" ")
+                        .append(fieldError.getDefaultMessage())
+                        .append("\n")
+        );
+        return error;
     }
 }

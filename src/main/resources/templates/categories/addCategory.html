@@ -77,6 +77,10 @@
                             <input type="submit" value="add">
                         </div>
 
+                        <div>
+                            <div th:if="${#request.getParameter('error') != null}" th:text="${#request.getParameter('error')}" class="my-5 text-danger"></div>
+                        </div>
+
                     </form>
                 </div>
 

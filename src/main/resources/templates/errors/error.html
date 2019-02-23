@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="~{head :: headFragment}">
+<body>
+
+<th:block th:fragment="errorBlock">
+    <div class="text-danger">
+        <div th:if="${#request.getParameter('error') != null}" th:text="${#request.getParameter('error')}"
+             class="border border-danger"></div>
+        <div class=" border border-danger" th:if="${#request.getParameter('errors') != null}">
+            <div th:each="error : ${#request.getParameter('errors')}">
+                <label th:text="'' + ${error.getField()} + ' ' + ${error.getDefaultMessage()}"></label>
+            </div>
+        </div>
+
+        <div class="border border-danger" th:if="${errors != null}">
+            <div th:each="fError : ${errors}" th:text="${fError.getField()} + ' ' + ${fError.getDefaultMessage()}"></div>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>

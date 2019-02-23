@@ -52,6 +52,7 @@ public class ItemServiceImpl extends BaseServiceImpl<Item, ItemRepository> imple
     @Override
     public Iterable<Item> findItemWithDescendantsByCategoryContains(Category category) {
         Iterable<Category> categories = categoryTreeRepository.findAllDescendants(category);
+        //return super.repository.findAllByCategoriesContains(categories);
         return super.repository.findAllByCategoriesContains(categories);
     }
 
@@ -102,6 +103,15 @@ public class ItemServiceImpl extends BaseServiceImpl<Item, ItemRepository> imple
         List<Item> items = new ArrayList<>();
         repository
                 .findWithPriceFilter(from, to)
+                .forEach(items::add);
+        return items;
+    }
+
+    @Override
+    public List<Item> findByNameContaining(String name) {
+        List<Item> items = new ArrayList<>();
+        repository
+                .findByNameContaining(name)
                 .forEach(items::add);
         return items;
     }

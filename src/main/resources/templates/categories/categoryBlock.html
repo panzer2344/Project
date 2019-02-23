@@ -17,7 +17,7 @@
                     <!-- Level 0 categories -->
                     <li class="list-group-item">
                         <a th:href="'/' + ${categoryNode0.getAncestor().getId()}"
-                           th:text="${categoryNode0.getAncestor().name}"></a>
+                           th:text="'\t' + ${categoryNode0.getAncestor().name}"></a>
                     </li>
 
                     <div th:if="${immediateDescendantsMap.get(categoryNode0.getAncestor()) != null}">
@@ -27,7 +27,7 @@
                                     <!-- Level 1 categories -->
                                     <li class="list-group-item inner">
                                         <a th:href="'/' + ${category1.getId()}"
-                                           th:text="${category1.name}"></a>
+                                           th:text="'\t' + ${category1.name}"></a>
                                     </li>
 
                                     <div th:if="${immediateDescendantsMap.get(category1) != null}">
@@ -37,7 +37,7 @@
                                                     <!-- Level 2 categories -->
                                                     <li class="list-group-item inner">
                                                         <a th:href="'/' + ${category2.getId()}"
-                                                           th:text="${category2.name}"></a>
+                                                           th:text=" + ${category2.name}"></a>
                                                     </li>
                                                 </div>
                                             </ul>
