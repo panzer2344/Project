@@ -29,35 +29,35 @@
                     </div>-->
 
                     <div th:if="${user.firstName != null && !user.firstName.equals('')}">
-                        <div>
+                        <!--<div>
                             <label class="font-weight-bold">Old first name: </label>
                             <label th:text="${user.firstName}"></label>
-                        </div>
+                        </div>-->
                         <div>
                             <label class="font-weight-bold">New first name: </label>
-                            <input type="text" name="firstName" id="firstName">
+                            <input type="text" name="firstName" id="firstName" th:value="${firstName}">
                         </div>
                     </div>
 
                     <div th:if="${user.lastName != null && !user.lastName.equals('')}">
-                        <div>
+                        <!--<div>
                             <label class="font-weight-bold">Old last name: </label>
                             <label th:text="${user.lastName}"></label>
-                        </div>
+                        </div>-->
                         <div>
                             <label class="font-weight-bold">New last name: </label>
-                            <input type="text" name="lastName" id="lastName">
+                            <input type="text" name="lastName" id="lastName" th:value="${user.lastName}">
                         </div>
                     </div>
 
                     <div th:if="${user.age != null}">
-                        <div>
+                        <!--<div>
                             <label class="font-weight-bold">Old age: </label>
                             <label th:text="${user.age}"></label>
-                        </div>
+                        </div>-->
                         <div>
                             <label class="font-weight-bold">New age: </label>
-                            <input type="number" name="age" id="age">
+                            <input type="number" name="age" id="age" th:value="${user.age}">
                         </div>
                     </div>
 

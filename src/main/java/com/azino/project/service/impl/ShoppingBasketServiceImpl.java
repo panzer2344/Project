@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,12 +44,12 @@ public class ShoppingBasketServiceImpl
     }
 
     @Override
-    public Double findAmountBySBId(Long id) {
+    public BigDecimal findAmountBySBId(Long id) {
         return super.repository.findAmountByShoppingBasketId(id);
     }
 
     @Override
-    public Double findAmountBySB(ShoppingBasket sb) {
+    public BigDecimal findAmountBySB(ShoppingBasket sb) {
         return super.repository.findAmountByShoppingBasketId(sb.getId());
     }
 
@@ -100,7 +101,7 @@ public class ShoppingBasketServiceImpl
                     (long) 0,
                     user,
                     new ArrayList<>(),
-                    0.0
+                    BigDecimal.ZERO
             );
             shoppingBasket = save(shoppingBasket);
         }
@@ -116,7 +117,7 @@ public class ShoppingBasketServiceImpl
                     (long) 0,
                     user,
                     new ArrayList<>(),
-                    0.0
+                    BigDecimal.ZERO
             );
             shoppingBasket = save(shoppingBasket);
         }

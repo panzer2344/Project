@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -31,6 +32,6 @@ public class ShoppingBasket implements IModel {
     private List<Item> items;
 
     @Min(0)
-    private Double amount;
+    private BigDecimal amount;
 
 }

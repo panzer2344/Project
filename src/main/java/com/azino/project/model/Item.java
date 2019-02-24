@@ -9,6 +9,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
@@ -30,7 +31,7 @@ public class Item implements IModel {
 
     @Min(PRICE_MIN_VALUE)
     @Max(PRICE_MAX_VALUE)
-    private Double price;
+    private BigDecimal price;
 
     @Min(COUNT_IN_STOCK_MIN_VALUE)
     @Max(COUNT_IN_STOCK_MAX_VALUE)
@@ -57,7 +58,7 @@ public class Item implements IModel {
     @Transient
     public static final int NAME_MAX_LENGTH = 30;
 
-    public Item(String name, Image avatar, Double price) {
+    public Item(String name, Image avatar, BigDecimal price) {
         this.name = name;
         this.avatar = avatar;
         this.price = price;
@@ -66,14 +67,14 @@ public class Item implements IModel {
     //@ElementCollection(targetClass = Category.class, fetch = FetchType.EAGER)
 
 
-    public Item(String name, Image avatar, Double price, Set<Category> categories) {
+    public Item(String name, Image avatar, BigDecimal price, Set<Category> categories) {
         this.name = name;
         this.avatar = avatar;
         this.price = price;
         this.categories = categories;
     }
 
-    public Item(String name, Image avatar, Double price, Integer countInStock, Set<Category> categories) {
+    public Item(String name, Image avatar, BigDecimal price, Integer countInStock, Set<Category> categories) {
         this.name = name;
         this.avatar = avatar;
         this.price = price;

@@ -122,3 +122,13 @@ body {
     border: none;
 }
 
+.list-group-item.inner-1{
+    margin-left: 1em;
+    border: none;
+}
+
+.list-group-item.inner-2{
+    margin-left: 2em;
+    border: none;
+}
+

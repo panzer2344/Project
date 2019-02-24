@@ -17,7 +17,7 @@
                     <!-- Level 0 categories -->
                     <li class="list-group-item">
                         <a th:href="'/' + ${categoryNode0.getAncestor().getId()}"
-                           th:text="'\t' + ${categoryNode0.getAncestor().name}"></a>
+                           th:text=" ${categoryNode0.getAncestor().name}"></a>
                     </li>
 
                     <div th:if="${immediateDescendantsMap.get(categoryNode0.getAncestor()) != null}">
@@ -25,9 +25,9 @@
                             <ul class="list-group">
                                 <div th:each="category1 : ${immediateDescendantsMap.get(categoryNode0.getAncestor()).getValue1()}">
                                     <!-- Level 1 categories -->
-                                    <li class="list-group-item inner">
+                                    <li class="list-group-item inner-1">
                                         <a th:href="'/' + ${category1.getId()}"
-                                           th:text="'\t' + ${category1.name}"></a>
+                                           th:text="${category1.name}"></a>
                                     </li>
 
                                     <div th:if="${immediateDescendantsMap.get(category1) != null}">
@@ -35,9 +35,9 @@
                                             <ul class="list-group">
                                                 <div th:each="category2 : ${immediateDescendantsMap.get(category1).getValue1()}">
                                                     <!-- Level 2 categories -->
-                                                    <li class="list-group-item inner">
+                                                    <li class="list-group-item inner-2">
                                                         <a th:href="'/' + ${category2.getId()}"
-                                                           th:text=" + ${category2.name}"></a>
+                                                           th:text="${category2.name}"></a>
                                                     </li>
                                                 </div>
                                             </ul>

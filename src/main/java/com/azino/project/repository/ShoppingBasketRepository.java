@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+
 @Repository
 @Transactional
 public interface ShoppingBasketRepository extends CrudRepository<ShoppingBasket, Long> {
@@ -19,7 +21,7 @@ public interface ShoppingBasketRepository extends CrudRepository<ShoppingBasket,
     User findUserByShoppingBasketId(@Param("id") Long id);
 
     @Query("select sb.amount from ShoppingBasket sb where sb.id = :id")
-    Double findAmountByShoppingBasketId(@Param("id") Long id);
+    BigDecimal findAmountByShoppingBasketId(@Param("id") Long id);
 
     @Query("select i from ShoppingBasket sb join sb.items i where sb.id = :id")
     Iterable<Item> findItemsInShoppingBasketById(@Param("id") Long id);

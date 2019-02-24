@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Data
@@ -28,7 +29,7 @@ public class FormItem {
 
     @Range(min = Item.PRICE_MIN_VALUE, max = Item.PRICE_MAX_VALUE)
     @NotNull
-    private Double price;
+    private BigDecimal price;
 
     @Range(min = Item.COUNT_IN_STOCK_MIN_VALUE, max = Item.COUNT_IN_STOCK_MAX_VALUE)
     @NotNull

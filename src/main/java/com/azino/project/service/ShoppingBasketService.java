@@ -4,6 +4,7 @@ import com.azino.project.model.Item;
 import com.azino.project.model.ShoppingBasket;
 import com.azino.project.model.User;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ShoppingBasketService extends BaseService<ShoppingBasket> {
@@ -14,9 +15,9 @@ public interface ShoppingBasketService extends BaseService<ShoppingBasket> {
 
     User findUserBySB(ShoppingBasket sb);
 
-    Double findAmountBySBId(Long id);
+    BigDecimal findAmountBySBId(Long id);
 
-    Double findAmountBySB(ShoppingBasket sb);
+    BigDecimal findAmountBySB(ShoppingBasket sb);
 
     List<Item> findItemsInShoppingBasketById(Long id);
 

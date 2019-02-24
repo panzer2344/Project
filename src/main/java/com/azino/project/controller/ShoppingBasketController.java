@@ -18,6 +18,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.ArrayList;
 
@@ -50,7 +51,7 @@ public class ShoppingBasketController {
                     userService
                             .fromUserDetailsUser(user),
                     new ArrayList<>(),
-                    0.0
+                    BigDecimal.ZERO
             );
             /*shoppingBasket = shoppingBasketService
                     .findByUserName(
@@ -58,9 +59,9 @@ public class ShoppingBasketController {
                     );*/
         }
 
-        Double amount = 0.0;
+        BigDecimal amount = BigDecimal.ZERO;
         for (Item item : shoppingBasket.getItems()) {
-            amount += item.getPrice();
+            amount = amount.add(item.getPrice());
         }
         shoppingBasket.setAmount(amount);
 
