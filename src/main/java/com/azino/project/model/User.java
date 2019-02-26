@@ -9,6 +9,9 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -48,6 +51,10 @@ public class User implements IModel {
     @NotNull
     @Size(min = 1)
     private Set<Role> roles;
+
+    /*@OneToMany(fetch = FetchType.EAGER)*/
+    @ElementCollection(targetClass = java.lang.String.class)
+    private List<String> activeSessions = new ArrayList<>(); //to check is deleting of items from shopBasket needed
 
     @Transient
     public static final int NAME_MAX_LENGTH = 40;

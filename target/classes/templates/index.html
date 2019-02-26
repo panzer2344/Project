@@ -47,16 +47,17 @@
                                         <div th:text="${item.name}"></div>
                                     </h4>
                                     <h5>
-                                        <div th:text="${item.price} + ' &#8381;'"></div>
+                                        <div th:text="${#numbers.formatDecimal(item.price, 1, 1, 'POINT')} + ' &#8381;'"></div>
                                     </h5>
                                     <h5>
                                         <div th:text="'Count: ' + ${item.countInStock}"></div>
                                     </h5>
-                                    <div th:if="${#request.userPrincipal != null}">
+                                    <!--<div th:if="${#request.userPrincipal != null}">-->
                                         <form name="addToBasket" id="addToBasket" action="/shoppingBasket" method="post">
                                             <input type="hidden" name="id" th:value="${item.id}">
                                             <input type="submit" value="to basket">
                                         </form>
+                                    <div th:if="${#request.userPrincipal != null}">
                                         <div sec:authorize="hasRole('ROLE_ADMIN')">
                                             <!--<span>Only for admin</span>-->
                                             <!-- Delete item, only for admin -->

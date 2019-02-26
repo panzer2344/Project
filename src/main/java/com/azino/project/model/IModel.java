@@ -1,4 +1,6 @@
 package com.azino.project.model;
 
-public interface IModel {
+import java.io.Serializable;
+
+public interface IModel{
 }

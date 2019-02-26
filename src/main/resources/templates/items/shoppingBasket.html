@@ -10,98 +10,110 @@
 <main>
     <div class="container">
         <!--<form method="post" action="/purchase">-->
-        <div th:if="${shoppingBasket != null}">
-            <p>
-                <label>Id: </label>
-                <label th:id="'sbIdLabel' + ${shoppingBasket.id}"
-                       class="shoppingBasketIdLabel"
-                       th:text="${shoppingBasket.id}">
-                </label>
-            </p>
-            <p>
-                <label>UserName: </label>
-                <label th:text="${shoppingBasket.user.name}"></label>
-                <!--<input type="hidden"
-                       th:value="${shoppingBasket.user.name}"
-                       th:name="userName">-->
-            </p>
-            <p>
-                <label>Items: </label><br>
-            <div th:if="${shoppingBasket.items != null}">
-                <div th:each="item, itemStat : ${shoppingBasket.items}">
+        <div class="my-5" th:if="${shoppingBasket != null}">
+            <div class="my-5" th:if="${#request.userPrincipal != null}">
+                <div class="row">
+                    <label>Id: </label>
+                    <label th:id="'sbIdLabel' + ${shoppingBasket.id}"
+                           class="shoppingBasketIdLabel"
+                           th:text="${shoppingBasket.id}">
+                    </label>
+                </div>
+                <div class="row my-3">
+                    <label>UserName: </label>
+                    <label th:text="${shoppingBasket.getUser().getName()}"></label>
                     <!--<input type="hidden"
-                           th:name="itemsId"
-                           th:value="${item.id}">-->
-                    <div class="col-lg-4 col-md-6 my-4">
-                        <div class="card h-100">
-                            <img class="card-img-top" alt=""
-                                 th:src="'data:/jpeg;base64,' + ${imageService.getEncodedImage(item.avatar.id)}"/>
-                            <!--<input type="hidden"
-                                   th:value="${item.avatar}"
-                                   th:name="items.avatar">-->
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <div th:text="${item.name}"></div>
+                           th:value="${shoppingBasket.user.name}"
+                           th:name="userName">-->
+                </div>
+            </div>
+            <div>
+                <label>Items: </label><br>
+                <div th:if="${shoppingBasket.items != null}">
+                    <div th:each="item, itemStat : ${shoppingBasket.items}">
+                        <!--<input type="hidden"
+                               th:name="itemsId"
+                               th:value="${item.id}">-->
+                        <div class="col-lg-4 col-md-6 my-4">
+                            <div class="card h-100">
+                                <img class="card-img-top" alt=""
+                                     th:src="'data:/jpeg;base64,' + ${imageService.getEncodedImage(item.avatar.id)}"/>
+                                <!--<input type="hidden"
+                                       th:value="${item.avatar}"
+                                       th:name="items.avatar">-->
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <div th:text="${item.name}"></div>
+                                        <!--<input th:type="hidden"
+                                               th:value="${item.name}"
+                                               th:name="items.name">-->
+                                    </h4>
+                                    <h5>
+                                        <div th:text="${item.price} + ' &#8381;'"></div>
+                                        <!--<input th:type="hidden"
+                                               th:value="${item.price}"
+                                               th:name="items.price">-->
+                                    </h5>
+                                    <div class="deleteForm"> <!--action="/shoppingBasket">-->
+                                        <input class="deleteFormSBId"
+                                               th:id="'iId' + ${item.id}"
+                                               name="itemId"
+                                               th:value="${item.id}"
+                                               type="hidden">
+                                        <input class="deleteFormSBId"
+                                               th:id="'sbId' + ${item.id}"
+                                               name="shoppingBasketId"
+                                               th:value="${shoppingBasket.id}"
+                                               type="hidden">
+                                        <!--<input type="submit" value="delete">-->
+                                        <button class="deleteButton"
+                                                th:id="'formBtn' + ${item.id}">
+                                            delete
+                                        </button>
+                                    </div>
                                     <!--<input th:type="hidden"
-                                           th:value="${item.name}"
-                                           th:name="items.name">-->
-                                </h4>
-                                <h5>
-                                    <div th:text="${item.price} + ' &#8381;'"></div>
-                                    <!--<input th:type="hidden"
-                                           th:value="${item.price}"
-                                           th:name="items.price">-->
-                                </h5>
-                                <div class="deleteForm"> <!--action="/shoppingBasket">-->
-                                    <input class="deleteFormSBId"
-                                           th:id="'iId' + ${item.id}"
-                                           name="itemId"
-                                           th:value="${item.id}"
-                                           type="hidden">
-                                    <input class="deleteFormSBId"
-                                           th:id="'sbId' + ${item.id}"
-                                           name="shoppingBasketId"
-                                           th:value="${shoppingBasket.id}"
-                                           type="hidden">
-                                    <!--<input type="submit" value="delete">-->
-                                    <button class="deleteButton"
-                                            th:id="'formBtn' + ${item.id}">
-                                        delete
-                                    </button>
+                                           th:value="${item.categories}"
+                                           th:name="items.categories"
+                                    >-->
                                 </div>
-                                <!--<input th:type="hidden"
-                                       th:value="${item.categories}"
-                                       th:name="items.categories"
-                                >-->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </p>
 
-            <p>
+            <div class="row">
                 <label>Amount: </label>
                 <label th:text="${shoppingBasket.amount}"></label>
                 <!--<input type="hidden"
                        th:value="${shoppingBasket.amount}"
                        th:name="amount">-->
-            </p>
+            </div>
 
-            <p>
-            <form action="/purchase" method="post">
-                <input type="hidden"
-                       th:name="shoppingBasketId"
-                       th:value="${shoppingBasket.id}">
-                <input type="submit" value="buy">
-            </form>
-            </p>
-            <p th:if="${error != null}">
+            <div class="row">
+                <div th:if="${#request.userPrincipal != null}">
+                    <form action="/purchase" method="post">
+                        <input type="hidden"
+                               th:name="shoppingBasketId"
+                               th:value="${shoppingBasket.id}">
+                        <input type="submit" value="buy">
+                    </form>
+                </div>
+                <div th:if="${#request.userPrincipal == null}">
+                    <form action="/login" method="get">
+                        <!--<input type="hidden"
+                               th:name="shoppingBasketId"
+                               th:value="${shoppingBasket.id}">-->
+                        <input type="submit" value="login">
+                    </form>
+                </div>
+            </div>
+            <div class="row" th:if="${error != null}">
                 <label style="color:red" th:value="${error}"></label>
-            </p>
+            </div>
 
         </div>
-        </form>
+        <!--</form>-->
     </div>
 </main>
 

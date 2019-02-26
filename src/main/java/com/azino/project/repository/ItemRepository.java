@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -39,7 +40,7 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     Iterable<Item> findByName(String name);
 
     @Query("select i from Item i where i.price >= :fromPrice and i.price <= :toPrice")
-    Iterable<Item> findWithPriceFilter(@Param("fromPrice") Double from, @Param("toPrice") Double to);
+    Iterable<Item> findWithPriceFilter(@Param("fromPrice") BigDecimal from, @Param("toPrice") BigDecimal to);
 
     Iterable<Item> findByNameContaining(String name);
 

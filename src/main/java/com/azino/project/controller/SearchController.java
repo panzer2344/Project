@@ -1,5 +1,6 @@
 package com.azino.project.controller;
 
+import com.azino.project.constants.Constant;
 import com.azino.project.service.ImageService;
 import com.azino.project.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("search")
@@ -25,8 +28,8 @@ public class SearchController {
     }
 
     @GetMapping("filter/price")
-    public ModelAndView getItemsWithPriceFilter(@RequestParam(value = "from", defaultValue = "0.0") Double from,
-                                                @RequestParam(value = "to", defaultValue = "" + Double.MAX_VALUE ) Double to,
+    public ModelAndView getItemsWithPriceFilter(@RequestParam(value = "from", defaultValue = "0") BigDecimal from,
+                                                @RequestParam(value = "to", defaultValue = "" + Integer.MAX_VALUE) BigDecimal to,
                                                 ModelMap modelMap){
         modelMap.addAttribute("items", itemService.findItemsWithPriceFilter(from, to));
         return new ModelAndView("forward:/filtered");

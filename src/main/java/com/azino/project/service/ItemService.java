@@ -5,6 +5,7 @@ import com.azino.project.model.DTO.form.FormItem;
 import com.azino.project.model.Item;
 import com.azino.project.model.User;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ItemService extends BaseService<Item>{
@@ -29,8 +30,10 @@ public interface ItemService extends BaseService<Item>{
 
     List<Item> findByName(String name);
 
-    List<Item> findItemsWithPriceFilter(Double from, Double to);
+    List<Item> findItemsWithPriceFilter(BigDecimal from, BigDecimal to);
 
     List<Item> findByNameContaining(String name);
+
+    Boolean increaseCountInStock(Long id, Integer onValue);
 
 }

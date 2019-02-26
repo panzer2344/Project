@@ -12,9 +12,12 @@ import com.azino.project.service.ItemService;
 import com.azino.project.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ItemServiceImpl extends BaseServiceImpl<Item, ItemRepository> implements ItemService {
@@ -99,7 +102,7 @@ public class ItemServiceImpl extends BaseServiceImpl<Item, ItemRepository> imple
     }
 
     @Override
-    public List<Item> findItemsWithPriceFilter(Double from, Double to) {
+    public List<Item> findItemsWithPriceFilter(BigDecimal from, BigDecimal to) {
         List<Item> items = new ArrayList<>();
         repository
                 .findWithPriceFilter(from, to)
@@ -114,5 +117,17 @@ public class ItemServiceImpl extends BaseServiceImpl<Item, ItemRepository> imple
                 .findByNameContaining(name)
                 .forEach(items::add);
         return items;
+    }
+
+    @Override
+    @Transactional
+    public Boolean increaseCountInStock(Long id, Integer onValue) {
+        Optional<Item> itemOptional = findById(id);
+        if(itemOptional.isPresent()){
+            Item item = itemOptional.get();
+            item.setCountInStock(item.getCountInStock() + onValue);
+            return true;
+        }
+        return false;
     }
 }

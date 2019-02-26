@@ -4,6 +4,7 @@ import com.azino.project.model.Item;
 import com.azino.project.model.ShoppingBasket;
 import com.azino.project.model.User;
 
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -30,4 +31,16 @@ public interface ShoppingBasketService extends BaseService<ShoppingBasket> {
     void addToShoppingBasket(User user, Long itemId);
 
     void addToShoppingBasket(User user, Item item);
+
+    Boolean deleteFromShoppingBasketUnlogin(Item item, HttpSession session);
+
+    Boolean deleteFromShoppingBasketUnlogin(Long itemId, HttpSession session);
+
+    Boolean addToShoppingBasketUnlogin(Item item, HttpSession session);
+
+    Boolean addToShoppingBasketUnlogin(Long itemId, HttpSession session);
+
+    ShoppingBasket getShoppingBasketFromSession(HttpSession session);
+
+    ShoppingBasket saveFromUnloginToDatabase(HttpSession session, String username);
 }

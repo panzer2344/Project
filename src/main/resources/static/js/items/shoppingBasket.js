@@ -1,8 +1,9 @@
 $(document).ready(function () {
     $('.deleteButton').click(function (e) {
-        itemId = parseInt(e.target.id.replace('formBtn', ''));
-        sbId = parseInt($('.shoppingBasketIdLabel')[0].id.replace('sbIdLabel', ''));
-        data = {
+        var itemId = parseInt(e.target.id.replace('formBtn', ''));
+        var shoppingBasketIdLabel0 = $('.shoppingBasketIdLabel')[0];
+        var sbId = shoppingBasketIdLabel0 === undefined ? null : parseInt(shoppingBasketIdLabel0.id.replace('sbIdLabel', ''));
+        var data = {
             'itemId': itemId,
             'shoppingBasketId': sbId
         };

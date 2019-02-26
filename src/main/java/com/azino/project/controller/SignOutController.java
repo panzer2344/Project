@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 
 @Controller
@@ -21,10 +22,11 @@ public class SignOutController {
     private UserUtils userUtils;
 
     @GetMapping
-    public ModelAndView signOut(Principal principal){
+    public ModelAndView signOut(Principal principal, HttpSession session){
         if(principal != null) {
             signOutService.signOut(
-                    userUtils.fromPrincipal(principal).getName()
+                    userUtils.fromPrincipal(principal).getName(),
+                    session
             );
         }
         return new ModelAndView("redirect:/signOutSecurity");

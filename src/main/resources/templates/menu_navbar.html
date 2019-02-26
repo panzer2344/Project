@@ -103,12 +103,14 @@
 
                     </li>
 
-                    <li th:if="${#request.userPrincipal != null}" class="nav-item">
-                        <!-- Shop basket icon, mb with count of items on front -->
-                        <a class="nav-link" href="/shoppingBasket">
-                            <i class="fa fa-shopping-cart fa-2x text-light" aria-hidden="true"></i>
-                        </a>
-                    </li>
+                    <!--<div th:if="${#request.userPrincipal != null}">-->
+                        <li class="nav-item">
+                            <!-- Shop basket icon, mb with count of items on front -->
+                            <a class="nav-link" href="/shoppingBasket">
+                                <i class="fa fa-shopping-cart fa-2x text-light" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    <!--</div>-->
 
                     <li th:if="${#request.userPrincipal == null}" class="nav-item my-lg-0 mr-sm-2">
                         <a class="nav-link" href="/login">LogIn</a>
@@ -129,9 +131,10 @@
                 </ul>
 
                 <form method="get" action="/search" name="searchForm" class="form-inline my-2 my-lg-0">
-                    <input name="text" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <input name="text" class="form-control mr-sm-2" type="text" placeholder="Search"
+                           aria-label="Search">
                     <!--<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>-->
-                    <input type="submit" class="btn btn-outline-light my-2 my-sm-0" value="Search" >
+                    <input type="submit" class="btn btn-outline-light my-2 my-sm-0" value="Search">
                 </form>
 
             </div>

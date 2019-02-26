@@ -20,7 +20,9 @@
                     </span>
             </div>
 
-            <form name="loginForm" method="POST" th:action="@{/j_spring_security_check}">
+            <!--<form name="loginForm" method="POST" th:action="@{/j_spring_security_check}">-->
+            <!--<form name="loginForm" method="POST" th:action="@{/loginSecurity}">-->
+            <form name="loginForm" method="POST" th:action="@{/login}">
                 Username: <input type="text" name="username" id="tbUsername"/>
                 Password: <input type="password" name="password" id="tbPaswword"/>
                 <!--<button id="btnLogin">Login</button>-->
