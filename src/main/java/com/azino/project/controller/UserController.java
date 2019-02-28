@@ -1,6 +1,7 @@
 package com.azino.project.controller;
 
 import com.azino.project.model.DTO.form.FormUser;
+import com.azino.project.model.DTO.form.FormUserWithoutRoles;
 import com.azino.project.model.User;
 import com.azino.project.service.UserService;
 import com.azino.project.util.WebUtils;
@@ -137,7 +138,7 @@ public class UserController {
 
     @PutMapping("update/{name}")
     @Transactional
-    public String update(@PathVariable String name, @Valid @RequestBody User formUser, BindingResult bindingResult, HttpServletResponse response){
+    public String update(@PathVariable String name, @Valid @RequestBody FormUserWithoutRoles formUser, BindingResult bindingResult, HttpServletResponse response){
         if(bindingResult.hasErrors()){
             try{
                 StringBuilder error = WebUtils.bindingResultErrorsToString(bindingResult);

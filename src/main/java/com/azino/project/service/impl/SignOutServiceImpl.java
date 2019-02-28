@@ -25,7 +25,7 @@ public class SignOutServiceImpl implements SignOutService {
         ShoppingBasket shoppingBasket = shoppingBasketService.findByUserName(userName);
         if(shoppingBasket != null) {
             userService.deleteSessionFromActiveSessions(userName, session.getId());
-            if(userService.getAllActiveSessions(userName).isEmpty()) {
+            if(userService.getAllActiveSessionsFromUser(userName).isEmpty()) {
                 shoppingBasketService.deleteAllItemsFromShoppingBasket(shoppingBasket.getId());
                 shoppingBasketService.delete(shoppingBasket);
             }

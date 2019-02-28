@@ -15,12 +15,16 @@ public interface UserService extends BaseService<User> {
 
     boolean isValid(String userName, String password);
 
-    List<String> getAllActiveSessions(String userName);
+    List<String> getAllActiveSessionsFromUser(String userName);
 
     boolean isSessionInActiveSessions(String userName, String sessionId);
 
     boolean deleteSessionFromActiveSessions(String userName, String sessionId);
 
     User addSessionToActiveSessions(String userName, String sessionId);
+
+    List<String> getAllActiveSessions();
+
+    void deleteAllActiveSessions();
 
 }

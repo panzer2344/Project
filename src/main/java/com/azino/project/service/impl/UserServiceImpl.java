@@ -67,7 +67,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserRepository> imple
 
     @Override
     @Transactional
-    public List<String> getAllActiveSessions(String userName) {
+    public List<String> getAllActiveSessionsFromUser(String userName) {
         List<String> sessions = null;
         User user = findByName(userName);
         if(null != user){
@@ -122,5 +122,21 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserRepository> imple
             }
         }
         return user;
+    }
+
+    @Override
+    @Transactional
+    public List<String> getAllActiveSessions() {
+        Iterable<User> userList = findAll();
+        List<String> list = new ArrayList<>();
+        userList.forEach(u -> list.addAll(u.getActiveSessions()));
+        return list;
+    }
+
+    @Override
+    @Transactional
+    public void deleteAllActiveSessions() {
+        Iterable<User> userList = findAll();
+        userList.forEach(u -> u.getActiveSessions().removeAll(u.getActiveSessions()));
     }
 }

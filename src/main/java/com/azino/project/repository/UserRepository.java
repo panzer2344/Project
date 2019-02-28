@@ -15,7 +15,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
     User deleteByName(String userName);
 
     /*@Query("select sessions from User.activeSessions as sessions")
-    List<String> getAllActiveSessions();*/
+    List<String> getAllActiveSessionsFromUser();*/
 
     /*@Query("delete from User.activeSessions as sessions where sessions = :sessionId")
     void deleteSessionFromSessions(String sessionId);*/

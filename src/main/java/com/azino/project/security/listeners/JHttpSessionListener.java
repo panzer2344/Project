@@ -60,7 +60,10 @@ public class JHttpSessionListener implements HttpSessionListener {
         ShoppingBasket shoppingBasket = shoppingBasketService.getShoppingBasketFromSession(se.getSession());
         //List<Item> items = null;
         //Principal principal = (Principal) ((Authentication)(SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getPrincipal();
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+
         if(principal instanceof UserDetails){
             UserDetails userDetails = (UserDetails)principal;
             System.out.println();

@@ -53,7 +53,7 @@ public class User implements IModel {
     private Set<Role> roles;
 
     /*@OneToMany(fetch = FetchType.EAGER)*/
-    @ElementCollection(targetClass = java.lang.String.class)
+    @ElementCollection(targetClass = java.lang.String.class, fetch = FetchType.EAGER)
     private List<String> activeSessions = new ArrayList<>(); //to check is deleting of items from shopBasket needed
 
     @Transient
